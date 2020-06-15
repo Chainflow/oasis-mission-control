@@ -20,6 +20,12 @@ This will save them considerable time, attention and effort, making it much more
  
 This should free operator time and attention to put toward other value-added ecosystem activities, e.g. thoughtfully participating in network governance.
 
+## For the Oasis Community
+
+We're building this for the Oasis Community. While the Oasis validators may seem like the most obvious beneficiaries, the broader Oasis community will also benefit from a more secure network, more diverse set of validators and greater validator governance participation.
+
+There will be a number of checkpoints along the way to collect community feedback. We look forward to the community's feedback, to help align what's built to the specific needs of the Oasis community.
+
 ## Timeline and Plan
 
 Assume 18 June start date.
@@ -36,7 +42,7 @@ Assume 18 June start date.
 
 **3 - Develop Final Specification - 2 weeks**
 
-- Collect specification community feedback
+- Collect specification community feedback *<-- Call for community feedback*
 - Develop monitoring and alerting tool final requirements, incorporating community feedback
 
 **4 - Develop Dashboard Prototype - 6 weeks**
@@ -44,15 +50,14 @@ Assume 18 June start date.
 - Develop and deploy dashboard prototype for review
 - Develop and deploy installation, configuration and operation documentation for review
 
-**5 - Collect Feedback on Dashboard Prototype - 1 week**
+**5 - Collect Feedback on Dashboard Prototype - 1 week** *<-- Call for community feedback*
 
 - Collect and prioritize community feedback for incorporation in final dashboard
 
 **6 - Develop Final Dashboard - 4 weeks**
 
-- Dashboard prototype for review
-- Final dashboard for release
-- Installation, configuration and operation documentation
+- Develop and deploy dashboard final dashboard for review
+- Finalize installation, configuration and operation documentation
 
 **7 - One of the phases is writing a blog post on the Oasis Blog. This will be in the last phase - 1 Day**
 
