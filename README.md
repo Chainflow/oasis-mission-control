@@ -1,3 +1,5 @@
+![Image description](https://github.com/chris-remus/cosmos-validator-mission-control/blob/master/Untitled%20design.jpg)
+
 # Oasis Mission Control Validator Monitoring and Alerting Dashboard 
 
 [Chainflow](https://chainflow.io/staking) and our development partner [Vitwit](https://vitwit.com) have been awarded an Oasis grant to build the Oasis Mission Control Validator Monitoring and Alerting Dashboard. 
