@@ -32,7 +32,7 @@ There will be a number of checkpoints along the way to collect community feedbac
 
 Assume 18 June start date.
 
-**1 - Set-up project structure - 1 week**
+**1 - Set-up project structure - 1 week - Done**
 
 - Confirm timeline
 - Set-up repo
