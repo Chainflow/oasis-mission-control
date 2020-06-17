@@ -1,6 +1,6 @@
 # Oasis Mission Control Validator Monitoring and Alerting Dashboard 
 
-[Chainflow](chainflow.io/staking) and our development partner [Vitwit](vitwit.com) has been awarded an Oasis grant to build the Oasis Mission Control Validator Monitoring and Alerting Dashboard. 
+[Chainflow](https://chainflow.io/staking) and our development partner [Vitwit](https://vitwit.com) have been awarded an Oasis grant to build the Oasis Mission Control Validator Monitoring and Alerting Dashboard. 
 
 Together, we've [built a similar tool](https://chainflow.io/cosmos-validator-mission-control/) for the Cosmos community, under an Interchain Foundation Grant.
 
