@@ -30,6 +30,9 @@ func GetBlockTimeDiff(ops HTTPOptions, cfg *config.Config, c client.Client) {
 
 	// callig GetBlockDetails to get validator block details
 	currentBlock := GetBlockDetails(cfg, currentHeight)
+	if currentBlock == nil {
+		return
+	}
 	currentBlockTime := currentBlock.Time
 
 	prevHeight := currentHeight - 1

@@ -62,7 +62,7 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 
 	blk := GetBlockDetails(cfg, height)
 
-	validator, err := co.GetValidatorBlock(context.Background(), blk.Height)
+	validator, err := co.GetLightBlock(context.Background(), blk.Height)
 	if err != nil {
 		log.Println("Failed to get Validators!", err)
 		return
