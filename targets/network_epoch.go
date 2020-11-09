@@ -38,26 +38,26 @@ func GetNetworkEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		log.Println("Error while storing network epoch number ", err)
 		return
 	}
-	log.Println("network epoch number..", epoch)
+	log.Printf("Network epoch number : %d", epoch)
 
 	// Calling function to get validator epoch number from db
 	valEpoch := GetValidatorEpoch(cfg, c)
-	log.Println("validator epoch number ", valEpoch)
+	log.Printf("Validator epoch number : %s", valEpoch)
 
 	valEpochNumber, _ := strconv.Atoi(valEpoch)
 	epochDiff := valEpochNumber - epoch
-	log.Println("Epoch difference..", epochDiff)
+	log.Printf("Epoch difference : %d", epochDiff)
 
 	err = writeToInfluxDb(c, bp, "oasis_epoch_diff", map[string]string{}, map[string]interface{}{"difference": epochDiff})
 	if err != nil {
-		log.Println("Error while storing epoch number difference ", err)
+		log.Printf("Error while storing epoch number difference : %v ", err)
 	}
 
 	if int64(epochDiff) >= cfg.EpochDiffThreshold {
 		_ = SendTelegramAlert(fmt.Sprintf("Epoch difference between validator and network has exceeded %d", cfg.EpochDiffThreshold), cfg)
 		_ = SendEmailAlert(fmt.Sprintf("Epoch difference between validator and network has exceeded %d", cfg.EpochDiffThreshold), cfg)
 
-		log.Println("Sent alert of worker height difference")
+		log.Println("Sent alert of worker epoch height difference")
 	}
 
 	return

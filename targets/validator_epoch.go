@@ -28,7 +28,7 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	if co == nil {
 
 		// Stop code here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: " +
+		log.Fatalf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}
@@ -38,25 +38,23 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// Retrieve block at specific height from consensus client
 	blk, err := co.GetBlock(context.Background(), height)
 	if err != nil {
-		log.Println("Error while getting block info ", err)
+		log.Printf("Error while getting block info : %v", err)
 		return
 	}
 
 	bh := blk.Height
 
-	log.Println("Block height...", bh)
-
 	// Return epcoh of specific height
 	epoch, err := co.GetEpoch(context.Background(), bh)
 	if err != nil {
-		log.Println("Failed to retrieve Epoch of Block!", err)
+		log.Printf("Failed to retrieve Epoch of Block : %v", err)
 		return
 	}
 
 	err = writeToInfluxDb(c, bp, "oasis_worker_epoch_number", map[string]string{}, map[string]interface{}{"epoch_number": epoch})
 	if err != nil {
-		log.Println("Error while storing worker epoch number ", err)
+		log.Printf("Error while storing worker epoch number : %v", err)
 		return
 	}
-	log.Println("validator worker epoch number..", epoch)
+	log.Printf("validator worker epoch number : %v", epoch)
 }

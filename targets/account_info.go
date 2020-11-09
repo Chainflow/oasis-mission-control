@@ -33,11 +33,8 @@ func GetAccount(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	// func GetValidatorsList(cfg *config.Config, height int64) {
 	socket := cfg.SocketPath
-
-	// Attempt to load connection with consensus client
-	connection, co := loadStakingClient(socket)
+	connection, co := loadStakingClient(socket) // Attempt to load connection with consensus client
 
 	// Close connection once code underneath executes
 	defer connection.Close()
@@ -45,8 +42,8 @@ func GetAccount(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// If null object was retrieved send response
 	if co == nil {
 
-		// Stop code here faild to establish connection and reply
-		log.Println("Failed to establish connection using socket: " +
+		// Stop here faild to establish connection and reply
+		log.Fatalf("Failed to establish connection using socket: " +
 			socket)
 		return
 	}
@@ -57,13 +54,16 @@ func GetAccount(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// Unmarshall text into public key object
 	err = address.UnmarshalText([]byte(valAddress))
 	if err != nil {
+
 		log.Println("Failed to UnmarshalText into Address", err)
 		return
 	}
 
 	var height int64 = consensus.HeightLatest
-
-	blk := GetBlockDetails(cfg, height)
+	blk := GetBlockDetails(cfg, height) // get block height from db
+	if blk == nil {
+		return
+	}
 
 	if len(address) != 0 {
 		// Create an owner query to be able to retrieve data with regards to account
@@ -72,7 +72,8 @@ func GetAccount(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		// Retrieve account information using created query
 		account, err := co.Account(context.Background(), &query)
 		if err != nil {
-			log.Println("Failed to get Account!")
+
+			log.Printf("Failed to get Account : %v ", err)
 			return
 		}
 
@@ -91,9 +92,7 @@ func GetSelfDelegationBal(ops HTTPOptions, cfg *config.Config, c client.Client) 
 	}
 
 	socket := cfg.SocketPath
-
-	// Attempt to load connection with consensus client
-	connection, co := loadStakingClient(socket)
+	connection, co := loadStakingClient(socket) // Attempt to load connection with consensus client
 
 	// Close connection once code underneath executes
 	defer connection.Close()
@@ -113,28 +112,31 @@ func GetSelfDelegationBal(ops HTTPOptions, cfg *config.Config, c client.Client) 
 	// Unmarshall text into public key object
 	err = address.UnmarshalText([]byte(valAddress))
 	if err != nil {
-		log.Println("Failed to UnmarshalText into Address", err)
+
+		log.Printf("Failed to UnmarshalText into Address : %v", err)
 		return
 	}
 
 	var height int64 = consensus.HeightLatest
-
 	blk := GetBlockDetails(cfg, height)
+	if blk == nil || len(address) == 0 {
+		return
+	}
 
 	// Create an owner query to be able to retrieve data with regards to account
 	query := staking.OwnerQuery{Height: blk.Height, Owner: address}
 
 	delegations, err := co.Delegations(context.Background(), &query)
 	if err != nil {
-		log.Println("Failed to get Delegations!", err)
 
+		log.Printf("Failed to get Delegations : %v", err)
 		return
 	}
 
 	if len(delegations) != 0 {
-		value := &delegations[address].Shares
 
+		value := &delegations[address].Shares
 		_ = writeToInfluxDb(c, bp, "oasis_self_delegation_balance", map[string]string{}, map[string]interface{}{"balance": value.String()})
-		log.Println("delegations..", value)
+		log.Printf("Self delegations : %s", value)
 	}
 }

@@ -24,8 +24,8 @@ func loadConsensusClient(socket string) (*grpc.ClientConn,
 	// Attempt to load connection with consensus client
 	connection, consensusClient, err := rpc.ConsensusClient(socket)
 	if err != nil {
-		log.Println("Failed to establish connection to consensus"+
-			" client : ", err)
+		log.Printf("Failed to establish connection to consensus"+
+			" client : %v", err)
 		return nil, nil
 	}
 	return connection, consensusClient
@@ -49,8 +49,8 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// If null object was retrieved send response
 	if co == nil {
 
-		// Stop code here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: " +
+		// Stop here faild to establish connection and reply
+		log.Fatalf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}
@@ -60,28 +60,24 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// Retrieve block at specific height from consensus client
 	blk, err := co.GetBlock(context.Background(), height)
 	if err != nil {
-		log.Println("Error while getting block info ", err)
+		log.Printf("Error while getting block info : %v", err)
 		return
 	}
 
 	bh := blk.Height
-
 	blockHeight := strconv.FormatInt(bh, 10)
 
 	// Responding with retrieved block
-	log.Println("block height..", blockHeight)
+	log.Printf("block height : %s", blockHeight)
 
 	var meta mint_api.BlockMeta
 	if err := cbor.Unmarshal(blk.Meta, &meta); err != nil {
-		log.Println("Request failed to Unmarshal Block Metadata : ", err)
-
+		log.Printf("Request failed to Unmarshal Block Metadata : %v", err)
 		return
 	}
 
-	log.Println("meta header...", meta.LastCommit.Height)
-
+	log.Printf("Blok meta header height : %v", meta.LastCommit.Height)
 	// Send missed block alerts
-
 	addrExists := false
 	for _, c := range meta.LastCommit.Signatures {
 		if c.ValidatorAddress.String() == cfg.ValidatorHexAddress {
@@ -93,13 +89,13 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		// Send emergency missed blocks alert
 		err := SendEmeregencyAlerts(cfg, c, blockHeight)
 		if err != nil {
-			log.Println("Error while sending emergency missed block alerts ", err)
+			log.Printf("Error while sending emergency missed block alerts : %v", err)
 		}
 
 		blocks := GetContinuousMissedBlock(cfg, c)
 		currentHeightFromDb := GetlatestCurrentHeightFromDB(cfg, c)
 		blocksArray := strings.Split(blocks, ",")
-		fmt.Println("blocks length ", int64(len(blocksArray)), currentHeightFromDb)
+		log.Println("blocks length ", int64(len(blocksArray)), currentHeightFromDb)
 		//Calling function to store and send single missed block alerts
 		err = SendSingleMissedBlockAlert(cfg, c, blockHeight)
 		if err != nil {
@@ -203,47 +199,6 @@ func SendSingleMissedBlockAlert(cfg *config.Config, c client.Client, blockHeight
 	return nil
 }
 
-// GetGenesisStateToGensis
-func GetGenesisStateToGensis(ops HTTPOptions, cfg *config.Config, c client.Client) {
-	socket := cfg.SocketPath
-
-	// Attempt to load connection with consensus client
-	connection, co := loadConsensusClient(socket)
-
-	// Close connection once code underneath executes
-	defer connection.Close()
-
-	// If null object was retrieved send response
-	if co == nil {
-
-		// Stop code here faild to establish connection and reply
-		log.Println("Failed to establish connection using socket: " +
-			socket)
-		return
-	}
-
-	var height int64 = consensus.HeightLatest
-
-	// Retrieve block at specific height from consensus client
-	blk, err := co.GetBlock(context.Background(), height)
-	if err != nil {
-		log.Println("Error while getting block info ", err)
-		return
-	}
-
-	bh := blk.Height
-
-	// Retrieving genesis state of consensus object at specified height
-	consensusGenesis, err := co.StateToGenesis(context.Background(), bh)
-	if err != nil {
-		log.Println("Failed to get Genesis file of Block! ", err)
-		return
-	}
-
-	// Responding with consensus genesis state object, retrieved above.
-	log.Println("consenus genesis...", consensusGenesis.ChainID)
-}
-
 // GetBlockDetails returns validator block details
 func GetBlockDetails(cfg *config.Config, height int64) *consensus.Block {
 	socket := cfg.SocketPath
@@ -257,7 +212,7 @@ func GetBlockDetails(cfg *config.Config, height int64) *consensus.Block {
 	if co == nil {
 
 		// Stop code here faild to establish connection and reply
-		log.Println("Failed to establish connection using socket: " +
+		log.Fatalf("Failed to establish connection using socket: " +
 			socket)
 		return nil
 	}
@@ -265,7 +220,7 @@ func GetBlockDetails(cfg *config.Config, height int64) *consensus.Block {
 	// Retrieve block at specific height from consensus client
 	blk, err := co.GetBlock(context.Background(), height)
 	if err != nil {
-		log.Println("Error while getting block info ", err)
+		log.Printf("Error while getting block info : %v", err)
 		return nil
 	}
 

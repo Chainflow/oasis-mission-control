@@ -22,6 +22,7 @@ func GetBlockTimeDiff(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// block height
 	currentBlockHeight := GetValidatorBlock(cfg, c)
 	if currentBlockHeight == "" {
+
 		log.Println("Error while fetching current block height from db ", currentBlockHeight)
 		return
 	}
@@ -33,10 +34,14 @@ func GetBlockTimeDiff(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	if currentBlock == nil {
 		return
 	}
-	currentBlockTime := currentBlock.Time
 
+	currentBlockTime := currentBlock.Time
 	prevHeight := currentHeight - 1
+
 	prevBlockResp := GetBlockDetails(cfg, prevHeight)
+	if prevBlockResp == nil {
+		return
+	}
 
 	prevBlockTime := prevBlockResp.Time
 	PrevBlockTime := prevBlockTime
@@ -44,7 +49,7 @@ func GetBlockTimeDiff(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	diffSeconds := fmt.Sprintf("%.2f", timeDiff.Seconds())
 
 	_ = writeToInfluxDb(c, bp, "oasis_block_time_diff", map[string]string{}, map[string]interface{}{"time_diff": diffSeconds})
-	log.Printf("time diff: %d", diffSeconds)
+	log.Printf("Block time diff: %s", diffSeconds)
 
 	return
 }

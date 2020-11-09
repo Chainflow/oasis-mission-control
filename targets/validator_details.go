@@ -26,8 +26,8 @@ func loadLightClientBackend(socket string) (*grpc.ClientConn, consensus.LightCli
 
 	connection, lightClient, err := rpc.ConsensusLightClientBackend(socket)
 	if err != nil {
-		log.Println("Failed to establish connection to light client "+
-			" backend : ", err)
+		log.Printf("Failed to establish connection to light client "+
+			" backend : %v ", err)
 		return nil, nil
 	}
 	return connection, lightClient
@@ -52,8 +52,8 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// If null object was retrieved send response
 	if co == nil {
 
-		// Stop code here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: " +
+		// Stop here faild to establish connection and reply
+		log.Fatalf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}
@@ -61,10 +61,13 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	var height int64 = consensus.HeightLatest
 
 	blk := GetBlockDetails(cfg, height)
+	if blk == nil {
+		return
+	}
 
 	validator, err := co.GetLightBlock(context.Background(), blk.Height)
 	if err != nil {
-		log.Println("Failed to get Validators!", err)
+		log.Printf("Failed to query GetLightBlock : %v", err)
 		return
 	}
 
@@ -88,7 +91,7 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 			log.Println("val desc..", cfg.ValidatorHexAddress)
 
 			var vp string
-			fmt.Println("VOTING POWER: \n", val.VotingPower)
+			log.Printf("VOTING POWER: %d", val.VotingPower)
 
 			valVotingPow := strconv.FormatInt(val.VotingPower, 10)
 

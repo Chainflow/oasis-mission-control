@@ -30,7 +30,7 @@ func GetStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// If null object was retrieved send response
 	if co == nil {
 
-		// Stop code here faild to establish connection and reply
+		// Stop here faild to establish connection and reply
 		log.Fatalf("Failed to establish connection using socket: " +
 			socket)
 		return
@@ -39,7 +39,7 @@ func GetStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// Retrieve the current status overview
 	status, err := co.GetStatus(context.Background())
 	if err != nil {
-		log.Println("Failed to retrieve Status!")
+		log.Printf("Failed to retrieve Status : %v", err)
 		return
 	}
 
@@ -58,15 +58,13 @@ func GetStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	bh := status.LatestHeight
 	height := int(bh)
 
-	log.Printf("Peers count : %s and validator latest height : %d", numPeers, height)
+	log.Printf("Peers count : %d and validator latest height : %d", numPeers, height)
 
 	// Write latest block height
 	_ = writeToInfluxDb(c, bp, "oasis_current_block_height", map[string]string{}, map[string]interface{}{"height": height})
 
 	// Calling function to alert about validator status
 	ValidatorStatusAlert(cfg, c, status.IsValidator)
-
-	// log.Println("status info..", status.NodePeers, len(status.NodePeers))
 }
 
 // ValidatorStatusAlert is to alert about validator status weather it's active or jailed
