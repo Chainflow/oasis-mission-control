@@ -12,6 +12,7 @@ num_peers_threshold = 1
 missed_blocks_threshold = 4
 block_diff_threshold = 3
 epoch_diff_threshold = 3
+emergency_missed_blocks_threshold = 50
 
 [enable_alerts]
 enable_telegram_alerts = "yes"
@@ -27,7 +28,8 @@ tg_bot_token = "1117273891:AAEtr3ZU5x4JRjP12LBeu1fPF0T4xj-UI"
 
 [sendgrid]
 sendgrid_token = "SG.fMdY2lmRQ8absvgsdgsdlGpqQ.5OKsFzyc_1ccoC8y_kwvIxsofJ_1UuOvRFiQVBdMb1Q"
-email_address = "prathyusha@vitwit.com"
+email_address = "xyz@domain.com"
+pagerduty_email = "xyz@domain.com"
 
 [influxdb]
 port = "8086"

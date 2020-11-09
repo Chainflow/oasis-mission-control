@@ -5,7 +5,7 @@
 It should be installed on a validator node directly. These instructions assume the user will install Validator Mission Control on the validator.
 
 ## Install Prerequisites
-- **Go 13.x+**
+- **Go 14.x+**
 - **Docker 19+**
 - **Grafana 6.7+**
 - **InfluxDB 1.7+**
@@ -180,10 +180,8 @@ If your connection throws error "database not found", create a database
 ```bash
 $   cd $HOME
 $   influx
->   CREATE DATABASE db_name
-
-ex: CREATE DATABASE oasis
-ex: CREATE DATABASE telegraf
+>   CREATE DATABASE db_name    (ex : CREATE DATABASE oasis)
+> exit
 ```
 
 ### Then build and run the monitoring binary
@@ -271,7 +269,7 @@ This dashboard displays a quick information summary of validator details and sys
 
 - After this configuration click on Save & Test. Now you have a working Datasource of InfluxDBTelegraf.
 
-- You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus`, give URL of prometheus which was running on your validator (ex : http://ip_address:9090). 
+- You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus`, and URL of prometheus which was running on your validator (ex : http://ip_address:9090). 
 
 - After this configuration click on Save & Test. Now you have a working Datasource of Prometheus. 
 
