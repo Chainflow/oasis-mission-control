@@ -99,6 +99,8 @@ $ cp example.config.toml config.toml
 
     Telegram bot token, required for Telegram alerting. The bot should be added to the chat and should have send message permission.
 
+    - To create telegram bot and to know `tg_bot_token` and `tg_chat_id` [follow thse steps](##Steps-to-creat-telegram-bot) .
+
 - *email_address*
 
     E-mail address to receive mail notifications, required for e-mail alerting.
