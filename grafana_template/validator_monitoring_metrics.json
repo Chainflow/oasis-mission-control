@@ -1,4 +1,56 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDBVCF",
+      "label": "InfluxDBVcf",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "DS_INFLUXDBTELEGRAF",
+      "label": "InfluxDBTelegraf",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "6.7.2"
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -15,12 +67,13 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "id": null,
+  "iteration": 1604942624729,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -41,7 +94,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -138,7 +191,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -228,7 +281,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -249,7 +302,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -339,7 +392,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -441,7 +494,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "decimals": 1,
       "format": "none",
       "gauge": {
@@ -570,7 +623,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -591,7 +644,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -681,7 +734,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -702,7 +755,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -800,7 +853,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -897,7 +950,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -994,7 +1047,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -1092,7 +1145,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1189,7 +1242,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1286,7 +1339,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1383,7 +1436,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1480,7 +1533,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1585,7 +1638,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1639,7 +1692,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "oasis_consensus_proposed_blocks{job=\"oasis-node\",backend=\"tendermint\",instance=\"0.0.0.0:3001\"}",
+          "expr": "oasis_consensus_proposed_blocks{job=\"$job\",backend=\"tendermint\",instance=\"$instance\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1672,7 +1725,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1726,7 +1779,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "oasis_abci_db_size{instance=\"0.0.0.0:3001\",job=\"oasis-node\"}",
+          "expr": "oasis_abci_db_size{instance=\"$instance\",job=\"$job\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1749,7 +1802,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1770,7 +1823,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1867,7 +1920,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1964,7 +2017,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_INFLUXDBVCF}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -2063,14 +2116,9 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
+        "current": {},
         "datasource": "$DS",
-        "definition": "label_values(node_uname_info{job=\"$job\"}, instance)",
+        "definition": "label_values(oasis_registry_nodes{job=\"$job\"},instance)",
         "hide": 0,
         "includeAll": false,
         "index": -1,
@@ -2078,7 +2126,7 @@
         "multi": false,
         "name": "instance",
         "options": [],
-        "query": "label_values(node_uname_info{job=\"$job\"}, instance)",
+        "query": "label_values(oasis_registry_nodes{job=\"$job\"},instance)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2092,7 +2140,6 @@
       {
         "current": {
           "selected": false,
-          "tags": [],
           "text": "Prometheus",
           "value": "Prometheus"
         },
@@ -2110,12 +2157,8 @@
       },
       {
         "allValue": null,
-        "current": {
-          "tags": [],
-          "text": "localhost",
-          "value": "localhost"
-        },
-        "datasource": "InfluxDBTelegraf",
+        "current": {},
+        "datasource": "${DS_INFLUXDBTELEGRAF}",
         "definition": "SHOW TAG VALUES FROM system WITH KEY=host",
         "hide": 0,
         "includeAll": false,
@@ -2201,11 +2244,8 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "/",
-          "value": "/"
-        },
-        "datasource": "InfluxDBTelegraf",
+        "current": {},
+        "datasource": "${DS_INFLUXDBTELEGRAF}",
         "definition": "SHOW TAG VALUES FROM \"disk\" WITH KEY = \"path\" WHERE host =~ /$server/",
         "hide": 0,
         "includeAll": false,
@@ -2227,14 +2267,9 @@
       },
       {
         "allValue": null,
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
+        "current": {},
         "datasource": "$DS",
-        "definition": "label_values(node_uname_info, job)",
+        "definition": "label_values(oasis_registry_nodes,job)",
         "hide": 0,
         "includeAll": false,
         "index": -1,
@@ -2242,7 +2277,7 @@
         "multi": false,
         "name": "job",
         "options": [],
-        "query": "label_values(node_uname_info, job)",
+        "query": "label_values(oasis_registry_nodes,job)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2279,5 +2314,5 @@
   "variables": {
     "list": []
   },
-  "version": 54
+  "version": 55
 }
