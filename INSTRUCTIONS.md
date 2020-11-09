@@ -18,7 +18,7 @@ It should be installed on a validator node directly. These instructions assume t
 - Also it will create the databases(oasis and telegraf). If you configure different database names make sure to create those in influxDB.
 - If you are running telegraf on someother node run script by giving --remote-hosted flag so that the script don't start telegraf in current node (ex: ./install_script.sh --remote-hosted)
 - Here you can find
-[script file](https://github.com/PrathyushaLakkireddy/oasis-tool/script/install_script.sh).
+[script file](https://github.com/Chainflow/oasis-mission-control/script/install_script.sh).
 - To run script 
 ```bash
 chmod +x install_script.sh
@@ -298,6 +298,17 @@ This dashboard displays a quick information summary of validator details and sys
 - Alert when the voting power of your validator drops below **voting_power_threshold** which is user configured in *config.toml*
 - Alert when the worker epoch difference between validator and network reaches or exceeds the **epoch_diff_threshold** which is user configured in config.toml.
  
+
+
+## Steps to creat telegram bot
+To create telegram bot and to configure tg_bot_token and tg_chat_id, one can follow the below steps.
+
+- In the first step search for `@BotFather` , go to that chat and click on start.
+- Then do `/newbot` and the bot will respond, just follow those instcructions to create a bot.
+
+| example 1     | example 2      | example 2      |
+|------------|-------------|-------------|
+| <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/new_bot.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/start.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/bot_created.jpg" width="250"> |
 
 ## Feedback and Questions
 
