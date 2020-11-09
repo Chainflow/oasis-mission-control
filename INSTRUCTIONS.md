@@ -305,10 +305,14 @@ To create telegram bot and to configure tg_bot_token and tg_chat_id, one can fol
 
 - In the first step search for `@BotFather` , go to that chat and click on start.
 - Then do `/newbot` and the bot will respond, just follow those instcructions to create a bot.
+- From `example 3` you can observe tg_bot_token which is marked, and also to go to the bot chat click on the `Testing_intro_bot`.
 
 | example 1     | example 2      | example 2      |
 |------------|-------------|-------------|
-| <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/new_bot.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/start.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/bot_created.jpg" width="250"> |
+| <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/start.jpg" width="230"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/new_bot.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/bot_created.jpg" width="250"> |
+
+- To know your telegram chat id, search for `@my_id_bot` then you can find bot with name `What's my ID`.
+- Use this bot to get your personal ID or add it to any group to see its ID. Then that will become your tg_chat_id .
 
 ## Feedback and Questions
 
