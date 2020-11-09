@@ -309,7 +309,7 @@ To create telegram bot and to configure tg_bot_token and tg_chat_id, one can fol
 - Then do `/newbot` and the bot will respond, just follow those instcructions to create a bot.
 - From `example 3` you can observe tg_bot_token which is marked, and also to go to the bot chat click on the `Testing_intro_bot`.
 
-| example 1     | example 2      | example 2      |
+| example 1     | example 2      | example 3      |
 |------------|-------------|-------------|
 | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/start.jpg" width="230"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/new_bot.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/bot_created.jpg" width="250"> |
 

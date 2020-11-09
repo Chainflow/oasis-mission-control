@@ -65,6 +65,9 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
+	// Write validator hex address and publick ky into database
+	_ = writeToInfluxDb(c, bp, "oasis_validator_desc", map[string]string{}, map[string]interface{}{"hex_address": cfg.ValidatorDetails.ValidatorHexAddress, "val_address": cfg.ValidatorDetails.ValidatorAddress})
+
 	validator, err := co.GetLightBlock(context.Background(), blk.Height)
 	if err != nil {
 		log.Printf("Failed to query GetLightBlock : %v", err)
@@ -81,9 +84,6 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		log.Println("Error while unmarshelling the validator set data ", err)
 		return
 	}
-
-	// Write validator hex address and publick ky into database
-	_ = writeToInfluxDb(c, bp, "oasis_validator_desc", map[string]string{}, map[string]interface{}{"hex_address": cfg.ValidatorDetails.ValidatorHexAddress, "val_address": cfg.ValidatorDetails.ValidatorAddress})
 
 	for _, val := range vals.Validators {
 		if val.Address.String() == cfg.ValidatorDetails.ValidatorHexAddress {
