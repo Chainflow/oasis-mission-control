@@ -39,7 +39,7 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 	// Attempt to load connection with consensus client
 	connection, co := loadConsensusClient(socket)
 
@@ -80,7 +80,7 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	// Send missed block alerts
 	addrExists := false
 	for _, c := range meta.LastCommit.Signatures {
-		if c.ValidatorAddress.String() == cfg.ValidatorHexAddress {
+		if c.ValidatorAddress.String() == cfg.ValidatorDetails.ValidatorHexAddress {
 			addrExists = true
 		}
 	}
@@ -102,8 +102,8 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 			log.Println("Error while sending missed block alert ", err)
 			return
 		}
-		if cfg.MissedBlocksThreshold > 1 {
-			if int64(len(blocksArray))-1 >= cfg.MissedBlocksThreshold {
+		if cfg.AlertsThreshold.MissedBlocksThreshold > 1 {
+			if int64(len(blocksArray))-1 >= cfg.AlertsThreshold.MissedBlocksThreshold {
 				missedBlocks := strings.Split(blocks, ",")
 				_ = SendTelegramAlert(fmt.Sprintf("Validator missed blocks from height %s to %s", missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
 				_ = SendEmailAlert(fmt.Sprintf("Validator missed blocks from height %s to %s", missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
@@ -178,7 +178,7 @@ func SendSingleMissedBlockAlert(cfg *config.Config, c client.Client, blockHeight
 		return err
 	}
 
-	if cfg.MissedBlocksThreshold == 1 {
+	if cfg.AlertsThreshold.MissedBlocksThreshold == 1 {
 		err = SendTelegramAlert(fmt.Sprintf("Validator missed a block at block height %s", blockHeight), cfg)
 		err = SendEmailAlert(fmt.Sprintf("Validator missed a block at block height %s", blockHeight), cfg)
 		err = writeToInfluxDb(c, bp, "oasis_continuous_missed_blocks", map[string]string{}, map[string]interface{}{"missed_blocks": blockHeight, "range": blockHeight})
@@ -201,7 +201,7 @@ func SendSingleMissedBlockAlert(cfg *config.Config, c client.Client, blockHeight
 
 // GetBlockDetails returns validator block details
 func GetBlockDetails(cfg *config.Config, height int64) *consensus.Block {
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 	// Attempt to load connection with consensus client
 	connection, co := loadConsensusClient(socket)
 

@@ -17,7 +17,7 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 	// Attempt to load connection with consensus client
 	connection, co := loadConsensusClient(socket)
 

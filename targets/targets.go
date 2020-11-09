@@ -86,7 +86,7 @@ func InitTargets(cfg *config.Config) *Targets {
 			ExecutionType: "http",
 			Name:          "Get network latest height",
 			HTTPOptions: HTTPOptions{
-				Endpoint: cfg.NetworkURL + "/api/consensus/status?name=" + cfg.NetworkNodeName,
+				Endpoint: cfg.ValidatorDetails.NetworkURL + "/api/consensus/status?name=" + cfg.ValidatorDetails.NetworkNodeName,
 				Method:   http.MethodGet,
 			},
 			Func:        GetNetworkLatestHeight,
@@ -96,7 +96,7 @@ func InitTargets(cfg *config.Config) *Targets {
 			ExecutionType: "http",
 			Name:          "Get network epoch number",
 			HTTPOptions: HTTPOptions{
-				Endpoint: cfg.NetworkURL + "/api/consensus/epoch?name=" + cfg.NetworkNodeName,
+				Endpoint: cfg.ValidatorDetails.NetworkURL + "/api/consensus/epoch?name=" + cfg.ValidatorDetails.NetworkNodeName,
 				Method:   http.MethodGet,
 			},
 			Func:        GetNetworkEpoch,

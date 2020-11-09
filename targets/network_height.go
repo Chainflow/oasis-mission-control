@@ -54,9 +54,9 @@ func GetNetworkLatestHeight(ops HTTPOptions, cfg *config.Config, c client.Client
 		log.Printf("Network height: %d and Validator Height: %d", networkBlockHeight, vaidatorBlockHeight)
 
 		// Send alert
-		if int64(heightDiff) >= cfg.BlockDiffThreshold {
-			_ = SendTelegramAlert(fmt.Sprintf("Block difference between validator and network has exceeded %d", cfg.BlockDiffThreshold), cfg)
-			_ = SendEmailAlert(fmt.Sprintf("Block difference between validator and network has exceeded %d", cfg.BlockDiffThreshold), cfg)
+		if int64(heightDiff) >= cfg.AlertsThreshold.BlockDiffThreshold {
+			_ = SendTelegramAlert(fmt.Sprintf("Block difference between validator and network has exceeded %d", cfg.AlertsThreshold.BlockDiffThreshold), cfg)
+			_ = SendEmailAlert(fmt.Sprintf("Block difference between validator and network has exceeded %d", cfg.AlertsThreshold.BlockDiffThreshold), cfg)
 
 			log.Println("Sent alert of block height difference")
 		}

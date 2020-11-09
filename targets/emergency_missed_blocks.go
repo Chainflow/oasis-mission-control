@@ -23,14 +23,14 @@ func SendEmeregencyAlerts(cfg *config.Config, c client.Client, cbh string) error
 	blocksArray := strings.Split(blocks, ",")
 
 	currentHeightFromDb := GetlatestCurrentHeightFromMissedBlocks(cfg, c)
-	if cfg.EmergencyMissedBlocksThreshold >= 2 {
-		if int64(len(blocksArray))-1 >= cfg.EmergencyMissedBlocksThreshold {
+	if cfg.AlertsThreshold.EmergencyMissedBlocksThreshold >= 2 {
+		if int64(len(blocksArray))-1 >= cfg.AlertsThreshold.EmergencyMissedBlocksThreshold {
 			// Send emergency missed block alerts to telgram as well as pagerduty
 
 			missedBlocks := strings.Split(blocks, ",")
-			_ = SendTelegramAlert(fmt.Sprintf("%s validator missed blocks from height %s to %s", cfg.ValidatorName, missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
-			_ = SendEmailAlert(fmt.Sprintf("%s validator missed blocks from height %s to %s", cfg.ValidatorName, missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
-			_ = SendEmergencyEmailAlert(fmt.Sprintf("%s validator missed blocks from height %s to %s", cfg.ValidatorName, missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
+			_ = SendTelegramAlert(fmt.Sprintf("%s validator missed blocks from height %s to %s", cfg.ValidatorDetails.ValidatorName, missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
+			_ = SendEmailAlert(fmt.Sprintf("%s validator missed blocks from height %s to %s", cfg.ValidatorDetails.ValidatorName, missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
+			_ = SendEmergencyEmailAlert(fmt.Sprintf("%s validator missed blocks from height %s to %s", cfg.ValidatorDetails.ValidatorName, missedBlocks[0], missedBlocks[len(missedBlocks)-2]), cfg)
 			_ = writeToInfluxDb(c, bp, "oasis_emergency_missed_blocks", map[string]string{}, map[string]interface{}{"block_height": "", "current_height": cbh})
 			return nil
 		} else if len(blocksArray) == 1 {

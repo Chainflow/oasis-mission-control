@@ -33,7 +33,7 @@ func GetAccount(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 	connection, co := loadStakingClient(socket) // Attempt to load connection with consensus client
 
 	// Close connection once code underneath executes
@@ -49,7 +49,7 @@ func GetAccount(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	}
 
 	var address staking.Address
-	valAddress := cfg.ValidatorAddress
+	valAddress := cfg.ValidatorDetails.ValidatorAddress
 
 	// Unmarshall text into public key object
 	err = address.UnmarshalText([]byte(valAddress))
@@ -91,7 +91,7 @@ func GetSelfDelegationBal(ops HTTPOptions, cfg *config.Config, c client.Client) 
 		return
 	}
 
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 	connection, co := loadStakingClient(socket) // Attempt to load connection with consensus client
 
 	// Close connection once code underneath executes
@@ -107,7 +107,7 @@ func GetSelfDelegationBal(ops HTTPOptions, cfg *config.Config, c client.Client) 
 	}
 
 	var address staking.Address
-	valAddress := cfg.ValidatorAddress
+	valAddress := cfg.ValidatorDetails.ValidatorAddress
 
 	// Unmarshall text into public key object
 	err = address.UnmarshalText([]byte(valAddress))

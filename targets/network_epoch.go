@@ -53,9 +53,9 @@ func GetNetworkEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		log.Printf("Error while storing epoch number difference : %v ", err)
 	}
 
-	if int64(epochDiff) >= cfg.EpochDiffThreshold {
-		_ = SendTelegramAlert(fmt.Sprintf("Epoch difference between validator and network has exceeded %d", cfg.EpochDiffThreshold), cfg)
-		_ = SendEmailAlert(fmt.Sprintf("Epoch difference between validator and network has exceeded %d", cfg.EpochDiffThreshold), cfg)
+	if int64(epochDiff) >= cfg.AlertsThreshold.EpochDiffThreshold {
+		_ = SendTelegramAlert(fmt.Sprintf("Epoch difference between validator and network has exceeded %d", cfg.AlertsThreshold.EpochDiffThreshold), cfg)
+		_ = SendEmailAlert(fmt.Sprintf("Epoch difference between validator and network has exceeded %d", cfg.AlertsThreshold.EpochDiffThreshold), cfg)
 
 		log.Println("Sent alert of worker epoch height difference")
 	}

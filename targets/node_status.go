@@ -18,7 +18,7 @@ func NodeStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	path := strings.Split(cfg.SocketPath, ":")
+	path := strings.Split(cfg.ValidatorDetails.SocketPath, ":")
 
 	if len(path) >= 2 {
 		if _, err := os.Stat(path[1]); err == nil {

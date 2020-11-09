@@ -19,7 +19,7 @@ func GetStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 
 	// Attempt to load connection with consensus client
 	connection, co := loadConsensusClient(socket)
@@ -46,9 +46,9 @@ func GetStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	numPeers := len(status.NodePeers)
 
 	// Sent alert if no.of peers dropped below given threshold
-	if int64(numPeers) < cfg.NumPeersThreshold {
-		_ = SendTelegramAlert(fmt.Sprintf("Number of peers connected to your validator has fallen below %d", cfg.NumPeersThreshold), cfg)
-		_ = SendEmailAlert(fmt.Sprintf("Number of peers connected to your validator has fallen below %d", cfg.NumPeersThreshold), cfg)
+	if int64(numPeers) < cfg.AlertsThreshold.NumPeersThreshold {
+		_ = SendTelegramAlert(fmt.Sprintf("Number of peers connected to your validator has fallen below %d", cfg.AlertsThreshold.NumPeersThreshold), cfg)
+		_ = SendEmailAlert(fmt.Sprintf("Number of peers connected to your validator has fallen below %d", cfg.AlertsThreshold.NumPeersThreshold), cfg)
 	}
 
 	// Write data into influxdb
@@ -74,8 +74,8 @@ func ValidatorStatusAlert(cfg *config.Config, c client.Client, isVoting bool) {
 		return
 	}
 
-	alertTime1 := cfg.AlertTime1
-	alertTime2 := cfg.AlertTime2
+	alertTime1 := cfg.DailyAlerts.AlertTime1
+	alertTime2 := cfg.DailyAlerts.AlertTime2
 
 	t1, _ := time.Parse(time.Kitchen, alertTime1)
 	t2, _ := time.Parse(time.Kitchen, alertTime2)

@@ -41,7 +41,7 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	}
 
 	// func GetValidatorsList(cfg *config.Config, height int64) {
-	socket := cfg.SocketPath
+	socket := cfg.ValidatorDetails.SocketPath
 
 	// Attempt to load connection with consensus client
 	connection, co := loadLightClientBackend(socket)
@@ -83,12 +83,12 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	}
 
 	// Write validator hex address and publick ky into database
-	_ = writeToInfluxDb(c, bp, "oasis_validator_desc", map[string]string{}, map[string]interface{}{"hex_address": cfg.ValidatorHexAddress, "val_address": cfg.ValidatorAddress})
+	_ = writeToInfluxDb(c, bp, "oasis_validator_desc", map[string]string{}, map[string]interface{}{"hex_address": cfg.ValidatorDetails.ValidatorHexAddress, "val_address": cfg.ValidatorDetails.ValidatorAddress})
 
 	for _, val := range vals.Validators {
-		if val.Address.String() == cfg.ValidatorHexAddress {
+		if val.Address.String() == cfg.ValidatorDetails.ValidatorHexAddress {
 
-			log.Println("val desc..", cfg.ValidatorHexAddress)
+			log.Println("val desc..", cfg.ValidatorDetails.ValidatorHexAddress)
 
 			var vp string
 			log.Printf("VOTING POWER: %d", val.VotingPower)
@@ -108,9 +108,9 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 				log.Println("Error wile converting string to int of voting power \t", err)
 			}
 
-			if int64(votingPower) < cfg.VotingPowerThreshold {
-				_ = SendTelegramAlert(fmt.Sprintf("Your oasis validator's voting power has dropped below %d", cfg.VotingPowerThreshold), cfg)
-				_ = SendEmailAlert(fmt.Sprintf("Your oasis validator's voting power has dropped below %d", cfg.VotingPowerThreshold), cfg)
+			if int64(votingPower) < cfg.AlertsThreshold.VotingPowerThreshold {
+				_ = SendTelegramAlert(fmt.Sprintf("Your oasis validator's voting power has dropped below %d", cfg.AlertsThreshold.VotingPowerThreshold), cfg)
+				_ = SendEmailAlert(fmt.Sprintf("Your oasis validator's voting power has dropped below %d", cfg.AlertsThreshold.VotingPowerThreshold), cfg)
 			}
 		}
 	}
