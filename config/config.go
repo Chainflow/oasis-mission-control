@@ -1,8 +1,6 @@
 package config
 
 import (
-	"os"
-
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"gopkg.in/go-playground/validator.v9"
@@ -59,6 +57,7 @@ type (
 		SocketPath          string `mapstructure:"socket_path"`
 	}
 
+	// 
 	AlertsThreshold struct {
 		VotingPowerThreshold           int64 `mapstructure:"voting_power_threshold"`
 		NumPeersThreshold              int64 `mapstructure:"num_peers_threshold"`
@@ -101,15 +100,6 @@ func ReadFromFile() (*Config, error) {
 	}
 
 	return &cfg, nil
-}
-
-func getEnv(key string, defaultVal string) string {
-	if value, exists := os.LookupEnv(key); exists {
-		return value
-	} else if defaultVal == "" {
-		log.Fatalf("environment variable %s cannot have a nil value", key)
-	}
-	return defaultVal
 }
 
 //Validate config struct

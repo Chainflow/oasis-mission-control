@@ -1,69 +1,39 @@
-# Validator hex address
-#useful to know about last proposed block, missed blocks and voting power.
-validator_hex_addr = "D39E8B0586B4CDA0594483A41427E0580CCA3E85"
-
-# Validator address of your validator
-validator_addr = "oasis1qqsh2tgs3eg7m2eflw7x8reehj3kcr4rxux3prsh"
-
-# Give your validator name to get it display in telegram and email alerts
-validator_name = "oasis"
-
-# Network URL used to get network height and worker epoch number
+[validator_details]
+validator_addr = "oasis1qqsh2tgs3eg7m2eflw7x8rkcr4rxux3prsh"
+validator_hex_addr = "D39E8B0586B4CDA059A5241427E0580CCA3E85"
+validator_name = ""
 network_url = "http://157.230.100.229:3000"
-
-# Node name of network which has configured in simplyVC api server, which will be passed as a
-#query params in network_url
 network_node_name = "Oasis_Local"
+socket_path = "unix:/root/dir/node/internal.sock"
 
-# Configure the threshold to receive alert when the voting power reaches or drops below of the threshold given.
+[alerts_threshold]
 voting_power_threshold = 50
-
-# Configure the threshold to get an alert if the no.of connected peers falls below the threshold.
 num_peers_threshold = 1
-
-# Configure the threshold to receive missed block alerting
 missed_blocks_threshold = 4
+block_diff_threshold = 3
+epoch_diff_threshold = 3
 
-# These are for regular status updates. 
-# To receive validator status daily (twice), configure these parameters in the form of "02:25PM". The time here refers to UTC time.
+[enable_alerts]
+enable_telegram_alerts = "yes"
+enable_email_alerts = "yes"
+
+[daily_alerts]
 alert_time1 = "02:30PM"
 alert_time2 = "02:30AM"
 
-# Configure 'yes' if you wish to get telegram alerts otherwise make it 'no' .
-enable_telegram_alerts = "yes"
-
-#  Configure 'yes' if you wish to get email alerts otherwise make it 'no' .
-enable_email_alerts = "yes"
-
-# Give path of your validator's inernal.sock The RPC interface is ONLY exposed via an AF_LOCAL 
-#socket called internal.sock located in the node's data directory
-socket_path = "unix:/root/dir/node/internal.sock"
-
-# Give threshold to notify about continuous missed blocks to your pager duty account.
-# so that it will send mails, messages and makes you a call about alerts.
-emergency_missed_blocks_threshold = 50
-
-# Give block diff threshold to get alerts when the diff of validator and network height
-#reaches the configured threshold
-block_diff_threshold = 3
-
-# Give mail address of pager duty service to send alerts of emergency missed blocks
-# Have to give mail address which was generated after creation of a service in pager duty.
-pagerduty_email = "service@domain.pagerduty.com"
-
-[scraper]
-rate = "3s"
-port = ":8080"
-validator_rate = "60s"
-
 [telegram]
-tg_chat_id = 228288205
-tg_bot_token = "1117273891:AAEtr3ZU5x4JRj5YSF4LBeu1fP4xj-UI"
+tg_chat_id = 21918205
+tg_bot_token = "1117273891:AAEtr3ZU5x4JRjP12LBeu1fPF0T4xj-UI"
 
 [sendgrid]
-sendgrid_token = "SG.fMdY2lmRQ8absbcgllGpqQ.5OKsFzyc_1ccoC8y_kwvIxsofJ_1UuOvRFiQVBdM"
-email_address = "abc@xyz.com"
+sendgrid_token = "SG.fMdY2lmRQ8absvgsdgsdlGpqQ.5OKsFzyc_1ccoC8y_kwvIxsofJ_1UuOvRFiQVBdMb1Q"
+email_address = "prathyusha@vitwit.com"
 
 [influxdb]
 port = "8086"
-database = "oasis"
+database = "test"
+username = "vitwit"
+
+[scraper]
+rate = "3s"
+validator_rate = "60s"
