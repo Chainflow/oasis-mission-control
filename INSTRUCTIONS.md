@@ -233,6 +233,10 @@ The following list of metrics are displayed in this dashboard.
 - No Of Proposals : Displays number of consenus signed proposals (Will get this from prometheus metrics)
 - Abci Db Size : Displays the db size (MiB) (Accroding to prometheus metrics)
 
+   **Note:** 
+    - To get `Abci Db Size` and `No Of Proposals` you have to enable prometheus flag before starting oasis node. (ex: `--metrics.mode pull` `--metrics.address 0.0.0.0:3001` you have to add these falgs while running oasis node) .
+   - To get `Voting Power` you should have enabled the consensusrpc falg. (ex: `--worker.consensusrpc.enabled` should have added in oasis-node )
+
 
 **Note:** The above mentioned metrics will be calculated and displayed according to the validator address which will be configured in config.toml.
 
@@ -274,6 +278,8 @@ This dashboard displays a quick information summary of validator details and sys
 - You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus`, and URL of prometheus which was running on your validator (ex : http://ip_address:9090). 
 
 - After this configuration click on Save & Test. Now you have a working Datasource of Prometheus. 
+
+
 
 ### 3. Import the dashboards
 - To import the json file of the **validator monitoring metrics** click the *plus* button present on left hand side of the dashboard. Click on import and load the validator_monitoring_metrics.json present in the grafana_template folder. 
