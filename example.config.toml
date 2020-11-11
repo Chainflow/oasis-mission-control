@@ -1,0 +1,41 @@
+[validator_details]
+validator_addr = "oasis1qqsh2tgs3eg7m2eflw7x8rkcr4rxux3prsh"
+validator_hex_addr = "D39E8B0586B4CDA059A5241427E0580CCA3E85"
+validator_name = ""
+network_url = "http://157.230.100.229:3000"
+network_node_name = "Oasis_Local"
+socket_path = "unix:/root/dir/node/internal.sock"
+
+[alerts_threshold]
+voting_power_threshold = 50
+num_peers_threshold = 1
+missed_blocks_threshold = 4
+block_diff_threshold = 3
+epoch_diff_threshold = 3
+emergency_missed_blocks_threshold = 50
+
+[enable_alerts]
+enable_telegram_alerts = "yes"
+enable_email_alerts = "yes"
+
+[daily_alerts]
+alert_time1 = "02:30PM"
+alert_time2 = "02:30AM"
+
+[telegram]
+tg_chat_id = 21918205
+tg_bot_token = "1117273891:AAEtr3ZU5x4JRjP12LBeu1fPF0T4xj-UI"
+
+[sendgrid]
+sendgrid_token = "SG.fMdY2lmRQ8absvgsdgsdlGpqQ.5OKsFzyc_1ccoC8y_kwvIxsofJ_1UuOvRFiQVBdMb1Q"
+email_address = "xyz@domain.com"
+pagerduty_email = "xyz@domain.com"
+
+[influxdb]
+port = "8086"
+database = "test"
+username = "vitwit"
+
+[scraper]
+rate = "3s"
+validator_rate = "60s"
