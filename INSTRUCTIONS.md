@@ -6,7 +6,6 @@ It should be installed on a validator node directly. These instructions assume t
 
 ## Install Prerequisites
 - **Go 14.x+**
-- **Docker 19+**
 - **Grafana 6.7+**
 - **InfluxDB 1.7+**
 - **Telegraf 1.14+**
@@ -133,13 +132,16 @@ $ cp example.config.toml config.toml
 
     Configure **yes** if you wish to get email alerts otherwise make it **no** .
 
-- *val_operator_addr*
+- *validator_addr*
 
-    Operator address of your validator which will be used to get staking, delegation and distribution rewards.
+    Address of your validator which will be used to get staking and delegation etc.
 
 - *validator_hex_addr*
 
     Validator hex address useful to know about last proposed block, missed blocks and voting power.
+    
+    - If you want to know this hex address you can simply run this command on your oasis node.
+    (`oasis-node identity tendermint show-consensus-address --datadir /root/dir/node`)
 
 - *staking_denom*
 
@@ -190,12 +192,6 @@ $   influx
 
 ```bash
 $ go build -o oasis-chain-monit && ./oasis-chain-monit
-```
-
-### Run using docker
-```bash
-$ docker build -t cfv .
-$ docker run -d --name oasis-chain-monit cfv
 ```
 
 We have finished the installation and started the server. Now lets configure the Grafana dashboard.
