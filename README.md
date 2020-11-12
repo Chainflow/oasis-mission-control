@@ -2,9 +2,21 @@
 
 # Oasis Mission Control Validator Monitoring and Alerting Dashboard 
 
+## Background
+
 [Chainflow](https://chainflow.io/staking) and our development partner [Vitwit](https://vitwit.com) have been awarded an Oasis grant to build the Oasis Mission Control Validator Monitoring and Alerting Dashboard. 
 
 Together, we've [built a similar tool](https://chainflow.io/cosmos-validator-mission-control/) for the Cosmos community, under an Interchain Foundation Grant.
+
+## Current Status - 12 November 2020 - Code Released for Use
+
+You can find -
+
+1 - Dashboard details and screenshots [here](https://github.com/Chainflow/oasis-mission-control/issues/3)
+
+2 - Code and installation instructions here
+
+Have feedback or questions? Open an issue in this repo, thanks!
 
 ## Problem
 
