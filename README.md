@@ -14,7 +14,7 @@ You can find -
 
 1 - Dashboard details and screenshots [here](https://github.com/Chainflow/oasis-mission-control/issues/3)
 
-2 - Code and installation instructions here
+2 - Code and installation instructions [here](./INSTRUCTIONS.md)
 
 Have feedback or questions? Open an issue in this repo, thanks!
 
