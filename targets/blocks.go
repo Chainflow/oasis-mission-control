@@ -50,7 +50,7 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	if co == nil {
 
 		// Stop here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: %s" +
+		log.Printf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}
@@ -212,7 +212,7 @@ func GetBlockDetails(cfg *config.Config, height int64) *consensus.Block {
 	if co == nil {
 
 		// Stop code here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: " +
+		log.Printf("Failed to establish connection using socket: " +
 			socket)
 		return nil
 	}

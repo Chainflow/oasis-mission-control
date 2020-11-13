@@ -28,7 +28,7 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	if co == nil {
 
 		// Stop code here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: %s" +
+		log.Printf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}

@@ -7,27 +7,27 @@ import (
 )
 
 type (
-	//Telegram bot details struct
+	//Telegram is a struct which holds telegram bot token and chatID
 	Telegram struct {
 		BotToken string `mapstructure:"tg_bot_token"`
 		ChatID   int64  `mapstructure:"tg_chat_id"`
 	}
 
-	//SendGrid tokens
+	//SendGrid is a struct which holds sendgrid token and also your email and pagerduty email
 	SendGrid struct {
 		Token          string `mapstructure:"sendgrid_token"`
 		EmailAddress   string `mapstructure:"email_address"`
 		PagerdutyEmail string `mapstructure:"pagerduty_email"`
 	}
 
-	//Scraper time interval
+	//Scraper time interval to call targets based on defined scrape
 	Scraper struct {
 		Rate          string `mapstructure:"rate"`
 		Port          string `mapstructure:"port"`
 		ValidatorRate string `mapstructure:"validator_rate"`
 	}
 
-	//InfluxDB details
+	//InfluxDB is a struct which asks for influx database details
 	InfluxDB struct {
 		Port     string `mapstructure:"port"`
 		Database string `mapstructure:"database"`
@@ -35,19 +35,19 @@ type (
 		Password string `mapstructure:"password"`
 	}
 
-	// DailyAlerts struct to send validator status
+	// DailyAlerts to send validator status alerts twice a day
 	DailyAlerts struct {
 		AlertTime1 string `mapstructure:"alert_time1"`
 		AlertTime2 string `mapstructure:"alert_time2"`
 	}
 
-	// EnableAlerts struct which holds option to enable alerts
+	// EnableAlerts struct which holds option to enable/disable alerts
 	EnableAlerts struct {
 		EnableTelegramAlerts string `mapstructure:"enable_telegram_alerts"`
 		EnableEmailAlerts    string `mapstructure:"enable_email_alerts"`
 	}
 
-	// ValidatorDetails struct
+	// ValidatorDetails struct which holds details of validator
 	ValidatorDetails struct {
 		ValidatorAddress    string `mapstructure:"validator_addr"`
 		ValidatorHexAddress string `mapstructure:"validator_hex_addr"`
@@ -57,7 +57,7 @@ type (
 		SocketPath          string `mapstructure:"socket_path"`
 	}
 
-	// 
+	// AlertsThreshold is a struct which holds defined alerting thresholds to send alerts
 	AlertsThreshold struct {
 		VotingPowerThreshold           int64 `mapstructure:"voting_power_threshold"`
 		NumPeersThreshold              int64 `mapstructure:"num_peers_threshold"`
@@ -67,7 +67,7 @@ type (
 		EmergencyMissedBlocksThreshold int64 `mapstructure:"emergency_missed_blocks_threshold"`
 	}
 
-	//Config
+	//Config will be configured by user for monitoring and also to get alerts based on it
 	Config struct {
 		Scraper          Scraper          `mapstructure:"scraper"`
 		Telegram         Telegram         `mapstructure:"telegram"`
