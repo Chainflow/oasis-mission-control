@@ -12,7 +12,7 @@ Together, we've [built a similar tool](https://chainflow.io/cosmos-validator-mis
 
 You can find -
 
-1 - Dashboard details and screenshots [here](https://github.com/Chainflow/oasis-mission-control/issues/3)
+1 - Dashboard details, screenshots and alerts list [here](https://github.com/Chainflow/oasis-mission-control/issues/3)
 
 2 - Code and installation instructions [here](./INSTRUCTIONS.md)
 
