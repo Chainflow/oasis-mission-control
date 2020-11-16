@@ -45,7 +45,7 @@ else
 	echo "------remote-hosted enabled, so not downloading the telegraf--------"
 fi
 
-echo "------------Creating databases oasis and telegraf-------------"
+echo "------------Creating databases oasis-------------"
 
 curl "http://localhost:8086/query" --data-urlencode "q=CREATE DATABASE oasis"
 

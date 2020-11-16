@@ -5,7 +5,7 @@
 It should be installed on a validator node directly. These instructions assume the user will install Validator Mission Control on the validator.
 
 ## Install Prerequisites
-- **Go 14.x+**
+- **Go 15.x+**
 - **Grafana 6.7+**
 - **InfluxDB 1.7+**
 - **Telegraf 1.14+**
@@ -143,10 +143,6 @@ $ cp example.config.toml config.toml
     - If you want to know this hex address you can simply run this command on your oasis node.
     (`oasis-node identity tendermint show-consensus-address --datadir /root/dir/node`)
 
-- *staking_denom*
-
-    Give stakig denom to display along with self delegation balance (ex:uatom or umuon)
-
 - *pagerduty_email*
 
     Give mail address of pager duty service to send alerts of emergency missed blocks.
@@ -184,7 +180,7 @@ If your connection throws error "database not found", create a database
 ```bash
 $   cd $HOME
 $   influx
->   CREATE DATABASE db_name    (ex : CREATE DATABASE oasis)
+>   CREATE DATABASE oasis
 > exit
 ```
 
@@ -304,7 +300,7 @@ This dashboard displays a quick information summary of validator details and sys
  
 
 
-## Steps to creat telegram bot
+## Steps to create telegram bot
 To create telegram bot and to configure tg_bot_token and tg_chat_id, one can follow the below steps.
 
 - In the first step search for `@BotFather` , go to that chat and click on start.
