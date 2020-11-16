@@ -1,8 +1,8 @@
-# Validator Mission Control
+# Oasis Mission Control
 
-**Validator Mission Control** provides a comprehensive set of metrics and alerts for Oasis validator node operators. We utilized the power of Grafana + Telegraf and extended the monitoring & alerting with a custom built go server. It also sends emergency alerts and calls to you based on your pagerduty account configuration.
+**Oasis Mission Control** provides a comprehensive set of monitoring metrics and alerts for Oasis validator node operators. We utilized the power of Grafana + Telegraf and extended the monitoring & alerting with a custom built go server. The system also sends configurable emergency alerts and calls to you based on your pagerduty account configuration.
 
-It should be installed on a validator node directly. These instructions assume the user will install Validator Mission Control on the validator.
+Ideally, Oasis Mission Control should be installed on a validator node directly. These instructions assume the user will install Oasis Mission Control on the validator. [Contact us](https://chainflow.io/contact) if you'd like to discuss how to run Oasis Mission Control on a remote server instead.
 
 ## Install Prerequisites
 - **Go 15.x+**
@@ -14,9 +14,9 @@ It should be installed on a validator node directly. These instructions assume t
 ## 1.You can run this installation script to setup the monitoring tool
 
 - One click installation to download grafana, telegraf and influxdb.
-- Also it will create the databases(oasis and telegraf). If you configure different database names make sure to create those in influxDB.
-- If you are running telegraf on someother node run script by giving --remote-hosted flag so that the script don't start telegraf in current node (ex: ./install_script.sh --remote-hosted)
-- Here you can find
+- The script will also create the required databases (oasis and telegraf). If you configure different database names make sure to create those in influxDB.
+- If you are running telegraf on a remote node run the script using the --remote-hosted flag so the script don't start telegraf on the current node (ex: ./install_script.sh --remote-hosted)
+- Here you can find the
 [script file](https://github.com/Chainflow/oasis-mission-control/script/install_script.sh).
 - To run script 
 ```bash
@@ -24,13 +24,13 @@ chmod +x install_script.sh
 ./install_script.sh
 
 ```
-- After installation you just need to configure the config.toml and start the monitoring tool server.
-- Follow further steps to setup grafana dashboards.
+- After installation, configure the config.toml and start the monitoring tool server.
+- Follow the additional steps listed below to import and set-up the grafana dashboards.
 
 ## 2. Install Manually
 
 ### Install Grafana for Ubuntu
-Download the latest .deb file and extract it by using the following commands
+Download the latest .deb file and extract it by using the following commands.
 
 ```sh
 $ cd $HOME
@@ -39,7 +39,7 @@ $ wget https://dl.grafana.com/oss/release/grafana_6.7.2_amd64.deb
 $ sudo -S dpkg -i grafana_6.7.2_amd64.deb
 ```
 
-Start the grafana server
+Start the grafana server.
 ```sh
 $ sudo -S systemctl daemon-reload
 
@@ -66,8 +66,7 @@ $ sudo -S service influxdb start
 The default port that runs the InfluxDB HTTP service is :8086
 ```
 
-**Note :** If you want cusomize the configuration, edit `influxdb.conf` at `/etc/influxdb/influxdb.conf` and don't forget to restart the server after the changes. You can find a sample 'influxdb.conf' [file here](https://github.com/jheyman/influxdb/blob/master/influxdb.conf).
-
+**Note :** If you would like to cusomize the configuration, edit `influxdb.conf` at `/etc/influxdb/influxdb.conf` and restart the server after saving the changes. You can find a sample 'influxdb.conf' [file here](https://github.com/jheyman/influxdb/blob/master/influxdb.conf).
 
 Start telegraf
 
@@ -76,7 +75,7 @@ $ sudo -S apt-get update && sudo apt-get install telegraf
 $ sudo -S service telegraf start
 ```
 
-## Install and configure the Validator Mission Control
+## Install and configure Oasis Mission Control
 
 ### Get the code
 
@@ -86,7 +85,7 @@ $ cd oasis-mission-control
 $ cp example.config.toml config.toml
 ```
 
-## After all installations you have to follow below steps to configure the monitoring tool and grafana dashboards
+## After the installation completes, follow the below steps to configure the monitoring tool and grafana dashboards
 
 ### Configure the following variables in `config.toml`
 
@@ -96,13 +95,13 @@ $ cp example.config.toml config.toml
     
 - *tg_bot_token*
 
-    Telegram bot token, required for Telegram alerting. The bot should be added to the chat and should have send message permission.
+    Telegram bot token, required for Telegram alerting. The bot should be added to the chat you'd like alerts sent to and should have send message permission in that chat.
 
-    - To create telegram bot and to know `tg_bot_token` and `tg_chat_id` [follow thse steps](##Steps-to-creat-telegram-bot) .
+    - To create a telegram bot and to find `tg_bot_token` and `tg_chat_id` [follow thse steps](##Steps-to-creat-telegram-bot) .
 
 - *email_address*
 
-    E-mail address to receive mail notifications, required for e-mail alerting.
+    E-mail address to receive e-mail notifications, required for e-mail alerting.
 
 - *sendgrid_token*
 
@@ -118,11 +117,11 @@ $ cp example.config.toml config.toml
 
 - *voting_power_threshold*
 
-    Configure the threshold to receive alert when the voting power reaches or drops below of the threshold given.
+    Configure the threshold to receive alert when the voting power reaches or drops below the indicated threshold.
 
 - *num_peers_threshold*
 
-    Configure the threshold to get an alert if the no.of connected peers falls below the threshold.
+    Configure this threshold to receive an alert if the number of connected peers falls below the threshold.
 
 - *enable_telegram_alerts*
 
@@ -134,29 +133,29 @@ $ cp example.config.toml config.toml
 
 - *validator_addr*
 
-    Address of your validator which will be used to get staking and delegation etc.
+    Address of the validator you'd like to monitor.
 
 - *validator_hex_addr*
 
-    Validator hex address useful to know about last proposed block, missed blocks and voting power.
+    Validator hex address, which is useful to determine last proposed block, missed blocks and voting power.
     
-    - If you want to know this hex address you can simply run this command on your oasis node.
+    - To find this hex address, run this command on your oasis node.
     (`oasis-node identity tendermint show-consensus-address --datadir /root/dir/node`)
 
 - *pagerduty_email*
 
-    Give mail address of pager duty service to send alerts of emergency missed blocks.
-    Note : Have to give mail address which was generated after creation of a service in pager duty.
+   Email address of your configred pager duty service to receive alerts of emergency missed blocks.
+    Note : Have to give email address which was generated by the creation of a service in pager duty.
 
-    You can refer this to know about pagerduty (https://www.pagerduty.com/)
+    Learn more about pagerduty here (https://www.pagerduty.com/)
 
 - *emergency_missed_blocks_threshold*
 
-    Give threshold to notify about continuous missed blocks to your pager duty account. so that it will send mails, messages and makes you a call about alerts.
+    Give threshold to notify you about continuous missed blocks. This alert will be sent to your configured pager duty email address and is used to trigger pager duty workflows.
 
 - *block_diff_threshold*
 
-    An integer value to receive Block difference alerts, e.g. a value of 2 would alert you if your validator falls 2 or more blocks behind the chain's current block height.
+    An integer value to receive block difference alerts, e.g. a value of 2 would alert you if your validator falls 2 or more blocks behind the chain's current block height.
 
 - *epoch_diff_threshold*
 
@@ -164,16 +163,15 @@ $ cp example.config.toml config.toml
 
 - *network_url*
 
-    Give the network url, whic is useful to gather information like network height and epoch number. 
+    The network url this is used to provide network information like network height and epoch number. 
 
 - *network_node_name*
 
-    Give the node name of network which will be used as a query params in network url.
+    The node name of the network which will be used to query params in network url.
 
-    **Note:**  We have configured the SimplyVc api server and running it on our mainnet to get the network block height and epoch number. So the given network_url and network_node_name has taken based on the configuration we did. 
-    If you want to give another network url and node name you can configure it otherwise you can just keep which we have provided.
+    **Note:**  So the default network_url and network_node_name uses the SimplyVC api server to get the network block height and epoch number. If you want to use another network url and node name, change the default values. Otherwise keep the default values to use the SimplyVC api server.
 
-After populating config.toml, check if you have connected to influxdb and created a database which you are going to use.
+After populating config.toml, check and see if you have connected to influxdb and created a database.
 
 If your connection throws error "database not found", create a database
 
@@ -190,15 +188,15 @@ $   influx
 $ go build -o oasis-chain-monit && ./oasis-chain-monit
 ```
 
-We have finished the installation and started the server. Now lets configure the Grafana dashboard.
+We have finished the installation and started the server. Now let's configure the Grafana dashboard.
 
 ## Grafana Dashboards
 
 Validator Mission Control provides three dashboards
 
-1. Summary (Which gives quick overview of validator and system metrics)
-2. Validator Monitoring Metrics (These are the metrics which we have calculated and stored in influxdb)
-3. System Metrics (These are the metrics related to the system configuration which come from telegraf)
+1. Summary (Which gives quick overview of validator and system health)
+2. Validator Monitoring Metrics (These are the more detailed validator metrics which we have calculated and stored in influxdb)
+3. System Metrics (These are the usual system metrics that telegraf provides)
 
 ### 1. Summary Dashboard
 This dashboard displays a quick information summary of validator details and system metrics. It includes following details.
@@ -294,6 +292,21 @@ These are provided by telegraf.
 - Alert about validator health, i.e. whether it's voting or jailed. You can get alerts twice a day based on the time you have configured **alert_time1** and **alert_time2** in *config.toml*. This is a useful sanity check, to confirm the validator is voting (or alerting you if it's jailed).
 - Alert when the voting power of your validator drops below **voting_power_threshold** which is user configured in *config.toml*
 - Alert when the worker epoch difference between validator and network reaches or exceeds the **epoch_diff_threshold** which is user configured in config.toml.
+
+## Alerting - emergency notification
+
+There is also an "emergency" alert that can be configured. When triggered, it sends an email to your pagerduty account to trigger a pagerduty workflow. This alert is configured as described above and repeated here for convenience.
+
+- *pagerduty_email*
+
+    Give mail address of pager duty service to send alerts of emergency missed blocks.
+    Note : Have to give mail address which was generated after creation of a service in pager duty.
+
+    You can refer this to know about pagerduty (https://www.pagerduty.com/)
+
+- *emergency_missed_blocks_threshold*
+
+    Give threshold to notify about continuous missed blocks to your pager duty account. so that it will send mails, messages and makes you a call about alerts.
 
 ## Steps to create telegram bot
 To create telegram bot and to configure tg_bot_token and tg_chat_id, one can follow the below steps.
