@@ -192,18 +192,18 @@ We have finished the installation and started the server. Now let's configure th
 
 ## Grafana Dashboards
 
-Validator Mission Control provides three dashboards
+Oasis Mission Control provides three dashboards
 
-1. Summary (Which gives quick overview of validator and system health)
-2. Validator Monitoring Metrics (These are the more detailed validator metrics which we have calculated and stored in influxdb)
+1. Summary (Which gives quick look at validator and system health)
+2. Validator Monitoring Metrics (These are the more detailed validator metrics which are calculated and stored in influxdb)
 3. System Metrics (These are the usual system metrics that telegraf provides)
 
 ### 1. Summary Dashboard
-This dashboard displays a quick information summary of validator details and system metrics. It includes following details.
+This dashboard displays a quick quick look at validator and system health. It includes following details.
 
 - Validator identity (Hex Address and Address)
-- Validator summary (Oasis Node Status, Validator Status, No.Of peers, Current validator Block Height, Worker Epoch Number, Block Height Difference and Epoch Difference) are the metrics being displayed from Validator details.
-- CPU usage, RAM Usage, Memory usage and information about disk usage are the metrics being displayed from System details.
+- Validator summary (Oasis Node Status, Validator Status, No.Of peers, Current validator Block Height, Worker Epoch Number, Block Height Difference and Epoch Difference)
+- CPU usage, RAM Usage, Memory usage and disk usage are displayed from System details.
 
 
 ### 2. Validator monitoring metrics
@@ -213,29 +213,29 @@ The following list of metrics are displayed in this dashboard.
 - Address : Displays public key of the validator.
 - Oasis Node Status :  Displays whether the node is running or not in the form of UP and DOWN.
 - Validator Status :  Displays the validator health. Shows Voting if the validator is in active state or else Jailed.
-- Oasis Node Version : Displays the version of gaia currently running.
-- Block Time Difference : Displays the time difference between previous block and current block.
+- Oasis Node Version : Displays the version of oasis_node currently running.
+- Block Time Difference : Displays the time difference between previous block and current block on the validator.
 - Current Block Height - Validator : Displays the current block height committed by the validator.
 - Current Block Height - Network : Displays the current block height of a network.
-- Block Diffrence : Displays the difference of validator and network block heights.
-- Last Missed Block Range : Displays the continuous missed blocks range based on the threshold given in the config.toml
+- Block Diffrence : Displays the difference between validator and network block heights.
+- Last Missed Block Range : Displays the last continuous missed blocks range based on the threshold given in the config.toml
 - Blocks Missed In last 48h : Displays the count of blocks missed by the validator in last 48 hours.
 - No.of Peers : Displays the total number of peers connected to the validator.
 - Voting Power : Displays the voting power of the validator.
-- Escrow : Displays delegation balance of the validator.
+- Escrow : Displays the delegation balance of the validator.
 - Address Balance : Displays the account balance of the validator.
-- Worker Epoch Number - Validator: Displays the worker epoch number of the validator.
-- Worker Epoch Number - Network : Displays the worker epoch number of a network.
-- Worker Epoch Difference : Displays the difference between validator and network worker epoch numbers.
-- No Of Proposals : Displays number of consenus signed proposals (Will get this from prometheus metrics)
+- Worker Epoch Number - Validator: Displays the current worker epoch number of the validator.
+- Worker Epoch Number - Network : Displays the current worker epoch number of a network.
+- Worker Epoch Difference : Displays the difference between validator and network epoch numbers.
+- No Of Proposals : Displays number of consenus signed proposals (Retreived from prometheus metrics)
 - Abci Db Size : Displays the db size (MiB) (Accroding to prometheus metrics)
 
    **Note:** 
-    - To get `Abci Db Size` and `No Of Proposals` you have to enable prometheus flag before starting oasis node. (ex: `--metrics.mode pull` `--metrics.address 0.0.0.0:3001` you have to add these falgs while running oasis node) .
-   - To get `Voting Power` you should have enabled the consensusrpc falg. (ex: `--worker.consensusrpc.enabled` should have added in oasis-node )
+    - To get `Abci Db Size` and `No Of Proposals` you have to enable the prometheus flag before starting oasis node. (ex: `--metrics.mode pull` `--metrics.address 0.0.0.0:3001` you have to add these falgs while running oasis node) .
+   - To get `Voting Power` you should have enabled the consensusrpc flag. (ex: `--worker.consensusrpc.enabled` should be added when oasis-node is started.)
 
 
-**Note:** The above mentioned metrics will be calculated and displayed according to the validator address which will be configured in config.toml.
+**Note:** The above mentioned metrics will be calculated and displayed according to the validator address which was configured in config.toml.
 
 For alerts regarding system metrics, a Telegram bot can be set up on the dashboard itself. A new notification channel can be added for the Telegram bot by clicking on the bell icon on the left hand sidebar of the dashboard. 
 
@@ -255,21 +255,24 @@ These are provided by telegraf.
 
 ### 2. Create Datasources
 
-- Before importing the dashboards you have to create datasources of InfluxDBTelegraf, InfluxDBVCF and Prometheus Datasources.
+- Before importing the dashboards you have to create datasources for InfluxDBTelegraf, InfluxDBVCF and Prometheus Datasources.
 - To create datasoruces go to configuration and select Data Sources.
 - After that you can find Add data source, select InfluxDB from Time series databases section.
 - Then to create `InfluxDBVCF` Datasource, follow these configurations. In place of name give InfluxDBVCF, in place of URL give url of influxdb where it is running (ex : http://ip_address:8086). Finaly in InfluxDB Details section give Database name as `oasis` (If you haven't created a database with different name). You can give User and Password of influx if you have set anthing, otherwise you can leave it empty.
-- After this configuration click on Save & Test. Now you have a working Datasource of InfluxDBVCF.
+- After this configuration click on Save & Test. Now you have a working InfluxDBVCF datasource.
 
-- Repeat same steps to create `InfluxDBTelegraf` Datasource. In place of name give InfluxDBTelegraf, give URL of telegraf where it is running (ex: http://ip_address:8086). Give Database name as telegraf, user and password (If you have configured any). 
+- Repeat same steps to create an `InfluxDBTelegraf` Datasource. In place of name give InfluxDBTelegraf, give URL of telegraf where it is running (ex: http://ip_address:8086). Give Database name as telegraf, user and password (If you have configured any). 
 
-- After this configuration click on Save & Test. Now you have a working Datasource of InfluxDBTelegraf.
+- After this configuration click on Save & Test. Now you have a working InfluxDBTelegraf datasource.
 
-- You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus`, and URL of prometheus which was running on your validator (ex : http://ip_address:9090). 
+- You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus` and the URL of prometheus which was running on your validator (ex : http://ip_address:9090). 
 
-- After this configuration click on Save & Test. Now you have a working Datasource of Prometheus. 
+- After this configuration click on Save & Test. Now you have a working Prometheus datasource.
 
 ### 3. Import the dashboards
+
+- To import **summary**, click the *plus* button present on left hand side of the dashboard. Click on import and load the summary.json present in the grafana_template folder.
+
 - To import the json file of the **validator monitoring metrics** click the *plus* button present on left hand side of the dashboard. Click on import and load the validator_monitoring_metrics.json present in the grafana_template folder. 
 
 - Select the datasources and click on import.
@@ -277,8 +280,6 @@ These are provided by telegraf.
 - To import **system monitoring metrics** click the *plus* button present on left hand side of the dashboard. Click on import and load the system_monitoring_metrics.json present in the grafana_template folder.
 
 - While creating this dashboard if you face any issues at valueset, change it to empty and then click on import by selecting the datasources.
-
-- To import **summary**, click the *plus* button present on left hand side of the dashboard. Click on import and load the summary.json present in the grafana_template folder.
 
 - *For more info about grafana dashboard imports you can refer https://grafana.com/docs/grafana/latest/reference/export_import/*
 
@@ -312,14 +313,14 @@ There is also an "emergency" alert that can be configured. When triggered, it se
 To create telegram bot and to configure tg_bot_token and tg_chat_id, one can follow the below steps.
 
 - In the first step search for `@BotFather` , go to that chat and click on start.
-- Then do `/newbot` and the bot will respond, just follow those instcructions to create a bot.
+- Then enter `/newbot` and the bot will respond, follow those instructions to create a bot.
 - From `example 3` you can observe tg_bot_token which is marked, and also to go to the bot chat click on the `Testing_intro_bot`.
 
 | example 1     | example 2      | example 3      |
 |------------|-------------|-------------|
 | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/start.jpg" width="230"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/new_bot.jpg" width="250"> | <img src="https://github.com/Chainflow/oasis-mission-control/blob/implementation/images/bot_created.jpg" width="250"> |
 
-- To know your telegram chat id, search for `@my_id_bot` then you can find bot with name `What's my ID`.
+- To know your Telegram chat id, search for `@my_id_bot` then you can find bot with name `What's my ID`.
 - Use this bot to get your personal ID or add it to any group to see its ID. Then that will become your tg_chat_id .
 
 ## Feedback and Questions
