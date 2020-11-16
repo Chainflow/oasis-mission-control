@@ -325,4 +325,4 @@ To create telegram bot and to configure tg_bot_token and tg_chat_id, one can fol
 
 ## Feedback and Questions
 
-Please feel free to create issues in this repo to ask questions and/or suggest additional metrics, alerts or features.
+Please create issues [in this repo](https://github.com/Chainflow/oasis-mission-control) to ask questions and/or suggest additional metrics, alerts or features.
