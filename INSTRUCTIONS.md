@@ -97,7 +97,7 @@ $ cp example.config.toml config.toml
 
     Telegram bot token, required for Telegram alerting. The bot should be added to the chat you'd like alerts sent to and should have send message permission in that chat.
 
-    - To create a telegram bot and to find `tg_bot_token` and `tg_chat_id` [follow thse steps](##Steps-to-creat-telegram-bot) .
+    - To create a telegram bot and to find `tg_bot_token` and `tg_chat_id` [follow these steps](##Steps-to-creat-telegram-bot) .
 
 - *email_address*
 
@@ -258,14 +258,14 @@ These are provided by telegraf.
 - Before importing the dashboards you have to create datasources for InfluxDBTelegraf, InfluxDBVCF and Prometheus Datasources.
 - To create datasoruces go to configuration and select Data Sources.
 - After that you can find Add data source, select InfluxDB from Time series databases section.
-- Then to create `InfluxDBVCF` Datasource, follow these configurations. In place of name give InfluxDBVCF, in place of URL give url of influxdb where it is running (ex : http://ip_address:8086). Finaly in InfluxDB Details section give Database name as `oasis` (If you haven't created a database with different name). You can give User and Password of influx if you have set anthing, otherwise you can leave it empty.
+- Then to create `InfluxDBVCF` Datasource, follow these configurations. In place of name give InfluxDBVCF, in place of URL give url of influxdb where it is running (ex: http://ip_address:8086). Finaly in InfluxDB Details section give Database name as `oasis` (If you haven't created a database with different name). You can give User and Password of influx if you have set anthing, otherwise you can leave it empty.
 - After this configuration click on Save & Test. Now you have a working InfluxDBVCF datasource.
 
 - Repeat same steps to create an `InfluxDBTelegraf` Datasource. In place of name give InfluxDBTelegraf, give URL of telegraf where it is running (ex: http://ip_address:8086). Give Database name as telegraf, user and password (If you have configured any). 
 
 - After this configuration click on Save & Test. Now you have a working InfluxDBTelegraf datasource.
 
-- You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus` and the URL of prometheus which was running on your validator (ex : http://ip_address:9090). 
+- You have to repeat the same steps to create Prometheus Datasource, but you need to select `Prometheus` Data source from the list and configure accrodingly. In place of name give `Prometheus` and the URL of prometheus which was running on your validator (ex: http://ip_address:9090). 
 
 - After this configuration click on Save & Test. Now you have a working Prometheus datasource.
 
@@ -281,7 +281,7 @@ These are provided by telegraf.
 
 - While creating this dashboard if you face any issues at valueset, change it to empty and then click on import by selecting the datasources.
 
-- *For more info about grafana dashboard imports you can refer https://grafana.com/docs/grafana/latest/reference/export_import/*
+- *For more info about grafana dashboard imports you can refer [here](https://grafana.com/docs/grafana/latest/reference/export_import/).*
 
 ## Alerting (Telegram and Email)
  A custom alerting module has been developed to alert on key validator health events. The module uses data from influxdb and trigger alerts based on user-configured thresholds.
@@ -303,7 +303,7 @@ There is also an "emergency" alert that can be configured. When triggered, it se
     Give mail address of pager duty service to send alerts of emergency missed blocks.
     Note : Have to give mail address which was generated after creation of a service in pager duty.
 
-    You can refer this to know about pagerduty (https://www.pagerduty.com/)
+    Learn more about pagerduty [here](https://www.pagerduty.com/).
 
 - *emergency_missed_blocks_threshold*
 
