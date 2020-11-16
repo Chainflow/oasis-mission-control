@@ -8,7 +8,7 @@
 
 Together, we've [built a similar tool](https://chainflow.io/cosmos-validator-mission-control/) for the Cosmos community, under an Interchain Foundation Grant.
 
-## Current Status - 12 November 2020 - Code Released for Use
+## Current Status - 16 November 2020 - Code Released for Use
 
 You can find -
 
@@ -39,40 +39,3 @@ This should free operator time and attention to put toward other value-added eco
 We're building this for the Oasis Community. While the Oasis validators may seem like the most obvious beneficiaries, the broader Oasis community will also benefit from a more secure network, more diverse set of validators and greater validator governance participation.
 
 There will be a number of checkpoints along the way to collect community feedback. We look forward to the community's feedback, to help align what's built to the specific needs of the Oasis community.
-
-## Timeline and Plan
-
-Assume 18 June start date.
-
-**1 - Set-up project structure - 1 week - Done**
-
-- Confirm timeline
-- Set-up repo
-- Set-up project board
-
-**2 - Develop Draft Specification - 2 weeks**
-
-- Develop monitoring and alerting tool draft requirements specification
-
-**3 - Develop Final Specification - 2 weeks**
-
-- Collect specification community feedback *<-- Call for community feedback*
-- Develop monitoring and alerting tool final requirements, incorporating community feedback
-
-**4 - Develop Dashboard Prototype - 6 weeks**
-
-- Develop and deploy dashboard prototype for review
-- Develop and deploy installation, configuration and operation documentation for review
-
-**5 - Collect Feedback on Dashboard Prototype - 1 week** *<-- Call for community feedback*
-
-- Collect and prioritize community feedback for incorporation in final dashboard
-
-**6 - Develop Final Dashboard - 4 weeks**
-
-- Develop and deploy dashboard final dashboard for review
-- Finalize installation, configuration and operation documentation
-
-**7 - One of the phases is writing a blog post on the Oasis Blog. This will be in the last phase - 1 Day**
-
-- Develop and publish blog post
