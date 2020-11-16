@@ -196,12 +196,19 @@ We have finished the installation and started the server. Now lets configure the
 
 Validator Mission Control provides three dashboards
 
-1. Validator Monitoring Metrics (These are the metrics which we have calculated and stored in influxdb)
-2. System Metrics (These are the metrics related to the system configuration which come from telegraf)
-3. Summary (Which gives quick overview of validator and system metrics)
+1. Summary (Which gives quick overview of validator and system metrics)
+2. Validator Monitoring Metrics (These are the metrics which we have calculated and stored in influxdb)
+3. System Metrics (These are the metrics related to the system configuration which come from telegraf)
+
+### 1. Summary Dashboard
+This dashboard displays a quick information summary of validator details and system metrics. It includes following details.
+
+- Validator identity (Hex Address and Address)
+- Validator summary (Oasis Node Status, Validator Status, No.Of peers, Current validator Block Height, Worker Epoch Number, Block Height Difference and Epoch Difference) are the metrics being displayed from Validator details.
+- CPU usage, RAM Usage, Memory usage and information about disk usage are the metrics being displayed from System details.
 
 
-### 1. Validator monitoring metrics
+### 2. Validator monitoring metrics
 The following list of metrics are displayed in this dashboard.
 
 - Hex Address : Displays hex address of the validator.
@@ -236,17 +243,10 @@ For alerts regarding system metrics, a Telegram bot can be set up on the dashboa
 
 This will let the user configure the Telegram bot ID and chat ID. **A custom alert** can be set for each graph in a Grafana dashboard by clicking on the edit button and adding alert rules.
 
-### 2. System Monitoring Metrics
+### 3. System Monitoring Metrics
 These are provided by telegraf.
 
 -  For the list of system monitoring metrics, you can refer `telgraf.conf`. You can replace the file with your original telegraf.conf file which will be located at /telegraf/etc/telegraf (installation directory).
- 
- ### 3. Summary Dashboard
-This dashboard displays a quick information summary of validator details and system metrics. It includes following details.
-
-- Validator identity (Hex Address and Address)
-- Validator summary (Oasis Node Status, Validator Status, No.Of peers, Current validator Block Height, Worker Epoch Number, Block Height Difference and Epoch Difference) are the metrics being displayed from Validator details.
-- CPU usage, RAM Usage, Memory usage and information about disk usage are the metrics being displayed from System details.
 
 ## How to import these dashboards in your Grafana
 
@@ -271,8 +271,6 @@ This dashboard displays a quick information summary of validator details and sys
 
 - After this configuration click on Save & Test. Now you have a working Datasource of Prometheus. 
 
-
-
 ### 3. Import the dashboards
 - To import the json file of the **validator monitoring metrics** click the *plus* button present on left hand side of the dashboard. Click on import and load the validator_monitoring_metrics.json present in the grafana_template folder. 
 
@@ -286,19 +284,16 @@ This dashboard displays a quick information summary of validator details and sys
 
 - *For more info about grafana dashboard imports you can refer https://grafana.com/docs/grafana/latest/reference/export_import/*
 
-
 ## Alerting (Telegram and Email)
  A custom alerting module has been developed to alert on key validator health events. The module uses data from influxdb and trigger alerts based on user-configured thresholds.
 
- - Alert when the missed blocks count reaches or exceeds **missed_blocks_threshold** which is user configured in *config.toml*.
- - Alert when no.of peers count falls below of **num_peers_threshold** which is user configured in *config.toml*
+- Alert when the missed blocks count reaches or exceeds **missed_blocks_threshold** which is user configured in *config.toml*.
+- Alert when no.of peers count falls below of **num_peers_threshold** which is user configured in *config.toml*
 - Alert when the oasis node status is not running on validator instance.
 - Alert when the block difference between validator and network reaches or exceeds the **block_diff_threshold** which is user configured in config.toml.
 - Alert about validator health, i.e. whether it's voting or jailed. You can get alerts twice a day based on the time you have configured **alert_time1** and **alert_time2** in *config.toml*. This is a useful sanity check, to confirm the validator is voting (or alerting you if it's jailed).
 - Alert when the voting power of your validator drops below **voting_power_threshold** which is user configured in *config.toml*
 - Alert when the worker epoch difference between validator and network reaches or exceeds the **epoch_diff_threshold** which is user configured in config.toml.
- 
-
 
 ## Steps to create telegram bot
 To create telegram bot and to configure tg_bot_token and tg_chat_id, one can follow the below steps.
