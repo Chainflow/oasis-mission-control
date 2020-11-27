@@ -1,8 +1,6 @@
 package targets
 
 import (
-	"time"
-
 	client "github.com/influxdata/influxdb1-client/v2"
 
 	"github.com/Chainflow/oasis-mission-control/config"
@@ -55,17 +53,9 @@ type (
 	// NetworkLatestBlock which holds the information about network latest block
 	NetworkLatestBlock struct {
 		Result struct {
-			ConsensusVersion string      `json:"consensus_version"`
-			Backend          string      `json:"backend"`
-			Features         int         `json:"features"`
-			NodePeers        []string    `json:"node_peers"`
-			LatestHeight     int         `json:"latest_height"`
-			LatestHash       string      `json:"latest_hash"`
-			LatestTime       time.Time   `json:"latest_time"`
-			LatestStateRoot  interface{} `json:"latest_state_root"`
-			GenesisHeight    int         `json:"genesis_height"`
-			GenesisHash      interface{} `json:"genesis_hash"`
-			IsValidator      bool        `json:"is_validator"`
+			Height int    `json:"height"`
+			Time   string `json:"time"`
+			Meta   string `json:"meta"`
 		} `json:"result"`
 	}
 

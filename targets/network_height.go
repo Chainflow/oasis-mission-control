@@ -33,7 +33,7 @@ func GetNetworkLatestHeight(ops HTTPOptions, cfg *config.Config, c client.Client
 	}
 
 	if &networkBlock != nil {
-		networkBlockHeight := networkBlock.Result.LatestHeight
+		networkBlockHeight := networkBlock.Result.Height
 
 		_ = writeToInfluxDb(c, bp, "oasis_network_latest_block", map[string]string{}, map[string]interface{}{"block_height": networkBlockHeight})
 		log.Printf("Network height: %d", networkBlockHeight)
