@@ -8,6 +8,12 @@
 
 Together, we've [built a similar tool](https://chainflow.io/cosmos-validator-mission-control/) for the Cosmos community, under an Interchain Foundation Grant.
 
+## UPDATE - 18 December 2020 - Oasis Bug May Cause Crash
+
+Today we discovered a bug in the Oasis code that may cause a validator to crash under an edge case when running Mission Control. The Oasis team says this bug has been fixed in v20.12.3. v20.12.3 is currently running on testnet. The Oasis team expects to recommend a mainnet upgrade to v20.12.3 in January 2021.
+
+At this time, we recommend ONLY running Oasis Mission Control with v20.12.3.
+
 ## Current Status - 16 November 2020 - Code Released for Use
 
 You can find -
