@@ -43,6 +43,11 @@ func GetStatus(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
+	if &status == nil {
+		log.Printf("Got an empty status res : %v", status)
+		return
+	}
+
 	numPeers := len(status.NodePeers)
 
 	// Sent alert if no.of peers dropped below given threshold

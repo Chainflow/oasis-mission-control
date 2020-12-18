@@ -31,6 +31,11 @@ func GetNetworkEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
+	if &networkEpoch == nil {
+		log.Printf("NetworkEpoch res is empty : %v", networkEpoch.Result)
+		return
+	}
+
 	epoch := networkEpoch.Result
 
 	err = writeToInfluxDb(c, bp, "oasis_network_epoch_number", map[string]string{}, map[string]interface{}{"epoch_number": epoch})
