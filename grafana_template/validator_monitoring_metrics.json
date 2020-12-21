@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -2136,7 +2136,10 @@
   "refresh": "10s",
   "schemaVersion": 22,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "influxdb",
+    "prometheus"
+  ],
   "templating": {
     "list": []
   },
@@ -2160,9 +2163,9 @@
   },
   "timezone": "",
   "title": "Validator monitoring metrics",
-  "uid": "nOCSbGbGk",
+  "uid": "hbam18nMk",
   "variables": {
     "list": []
   },
-  "version": 1
+  "version": 6
 }
