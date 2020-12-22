@@ -64,6 +64,11 @@ func GetMissedBlock(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
+	if &blk == nil {
+		log.Printf("Empty block response : %v", blk)
+		return
+	}
+
 	bh := blk.Height
 	blockHeight := strconv.FormatInt(bh, 10)
 

@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1605003500781,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -52,7 +51,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 12,
         "x": 0,
         "y": 1
@@ -149,7 +148,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 12,
         "x": 12,
         "y": 1
@@ -234,7 +233,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "id": 32,
       "panels": [],
@@ -250,7 +249,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "InfluxDBVcf",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -260,10 +259,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
+        "h": 5,
+        "w": 5,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "id": 36,
       "interval": null,
@@ -296,19 +295,35 @@
       "sparkline": {
         "fillColor": "rgba(31, 118, 189, 0.18)",
         "full": false,
-        "lineColor": "#96D98D",
+        "lineColor": "#73BF69",
         "show": true,
         "ymax": null,
         "ymin": null
       },
-      "tableColumn": "Value",
+      "tableColumn": "",
       "targets": [
         {
           "expr": "up",
           "format": "table",
+          "groupBy": [],
           "interval": "",
           "legendFormat": "",
-          "refId": "A"
+          "measurement": "oasis_node_status",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": "",
@@ -316,7 +331,7 @@
       "timeShift": null,
       "title": "Oasis Node Status",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -350,10 +365,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 5
+        "h": 5,
+        "w": 5,
+        "x": 5,
+        "y": 6
       },
       "id": 14,
       "interval": null,
@@ -453,10 +468,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 5
+        "h": 5,
+        "w": 5,
+        "x": 10,
+        "y": 6
       },
       "id": 18,
       "interval": null,
@@ -576,7 +591,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 30,
       "panels": [],
@@ -602,10 +617,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 6,
         "w": 6,
         "x": 0,
-        "y": 10
+        "y": 12
       },
       "id": 10,
       "interval": null,
@@ -687,7 +702,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 18
       },
       "id": 8,
       "panels": [],
@@ -713,10 +728,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
+        "h": 5,
+        "w": 6,
         "x": 0,
-        "y": 15
+        "y": 19
       },
       "id": 2,
       "interval": null,
@@ -811,10 +826,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 5,
-        "y": 15
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 19
       },
       "id": 46,
       "interval": null,
@@ -908,10 +923,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 10,
-        "y": 15
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 19
       },
       "id": 48,
       "interval": null,
@@ -1005,10 +1020,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 15,
-        "y": 15
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 19
       },
       "id": 4,
       "interval": null,
@@ -1103,10 +1118,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 0,
-        "y": 19
+        "y": 24
       },
       "id": 38,
       "interval": null,
@@ -1200,10 +1215,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 6,
-        "y": 19
+        "y": 24
       },
       "id": 50,
       "interval": null,
@@ -1297,10 +1312,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 12,
-        "y": 19
+        "y": 24
       },
       "id": 52,
       "interval": null,
@@ -1394,10 +1409,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 18,
-        "y": 19
+        "y": 24
       },
       "id": 40,
       "interval": null,
@@ -1491,10 +1506,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 6,
         "x": 0,
-        "y": 23
+        "y": 29
       },
       "id": 6,
       "interval": null,
@@ -1563,9 +1578,9 @@
         }
       ],
       "thresholds": "",
-      "timeFrom": "48h",
+      "timeFrom": null,
       "timeShift": null,
-      "title": "Blocks Missed In",
+      "title": "Blocks Missed In Last 48hrs",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1586,7 +1601,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "InfluxDBVcf",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1596,10 +1611,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 6,
+        "h": 5,
+        "w": 7,
         "x": 6,
-        "y": 23
+        "y": 29
       },
       "id": 42,
       "interval": null,
@@ -1640,13 +1655,45 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "oasis_consensus_proposed_blocks{job=\"$job\",backend=\"tendermint\",instance=\"$instance\"}",
+          "expr": "oasis_consensus_proposed_blocks{job=\"oasis-node\",backend=\"tendermint\",instance=\"0.0.0.0:3001\"}",
           "format": "time_series",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A"
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": "",
@@ -1673,7 +1720,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "Prometheus",
+      "datasource": "InfluxDBVcf",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1683,10 +1730,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
-        "x": 12,
-        "y": 23
+        "h": 5,
+        "w": 7,
+        "x": 13,
+        "y": 29
       },
       "id": 44,
       "interval": null,
@@ -1727,10 +1774,42 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "oasis_abci_db_size{instance=\"$instance\",job=\"$job\"}",
+          "expr": "oasis_abci_db_size{instance=\"0.0.0.0:3001\",job=\"oasis-node\"}",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "interval": "",
           "legendFormat": "",
-          "refId": "A"
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": "",
@@ -1755,7 +1834,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 34
       },
       "id": 34,
       "panels": [],
@@ -1781,10 +1860,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
-        "w": 5,
+        "h": 5,
+        "w": 6,
         "x": 0,
-        "y": 28
+        "y": 35
       },
       "id": 22,
       "interval": null,
@@ -1878,10 +1957,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 5,
-        "x": 5,
-        "y": 28
+        "x": 6,
+        "y": 35
       },
       "id": 16,
       "interval": null,
@@ -1975,10 +2054,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 5,
-        "x": 10,
-        "y": 28
+        "x": 11,
+        "y": 35
       },
       "id": 20,
       "interval": null,
@@ -2058,200 +2137,14 @@
   "schemaVersion": 22,
   "style": "dark",
   "tags": [
-    "influxdb"
+    "influxdb",
+    "prometheus"
   ],
   "templating": {
-    "list": [
-      {
-        "allValue": null,
-        "current": {
-          "text": "0.0.0.0:3001",
-          "value": "0.0.0.0:3001"
-        },
-        "datasource": "$DS",
-        "definition": "label_values(oasis_registry_nodes{job=\"$job\"},instance)",
-        "hide": 0,
-        "includeAll": false,
-        "index": -1,
-        "label": "Instance",
-        "multi": false,
-        "name": "instance",
-        "options": [],
-        "query": "label_values(oasis_registry_nodes{job=\"$job\"},instance)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
-        },
-        "hide": 0,
-        "includeAll": false,
-        "label": "Datasource",
-        "multi": false,
-        "name": "DS",
-        "options": [],
-        "query": "prometheus",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "type": "datasource"
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "localhost",
-          "value": "localhost"
-        },
-        "datasource": "InfluxDBTelegraf",
-        "definition": "SHOW TAG VALUES FROM system WITH KEY=host",
-        "hide": 0,
-        "includeAll": false,
-        "index": -1,
-        "label": "Server",
-        "multi": false,
-        "name": "server",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM system WITH KEY=host",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "auto": true,
-        "auto_count": 100,
-        "auto_min": "30s",
-        "current": {
-          "selected": false,
-          "text": "10s",
-          "value": "10s"
-        },
-        "hide": 0,
-        "label": "Sampling",
-        "name": "inter",
-        "options": [
-          {
-            "selected": false,
-            "text": "auto",
-            "value": "$__auto_interval_inter"
-          },
-          {
-            "selected": true,
-            "text": "10s",
-            "value": "10s"
-          },
-          {
-            "selected": false,
-            "text": "30s",
-            "value": "30s"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "2m",
-            "value": "2m"
-          },
-          {
-            "selected": false,
-            "text": "5m",
-            "value": "5m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          }
-        ],
-        "query": "10s,30s,1m,2m,5m,10m,30m,1h",
-        "refresh": 2,
-        "skipUrlSync": false,
-        "type": "interval"
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "/",
-          "value": "/"
-        },
-        "datasource": "InfluxDBTelegraf",
-        "definition": "SHOW TAG VALUES FROM \"disk\" WITH KEY = \"path\" WHERE host =~ /$server/",
-        "hide": 0,
-        "includeAll": false,
-        "index": -1,
-        "label": "Mountpoint",
-        "multi": false,
-        "name": "mountpoint",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM \"disk\" WITH KEY = \"path\" WHERE host =~ /$server/",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "oasis-node",
-          "value": "oasis-node"
-        },
-        "datasource": "$DS",
-        "definition": "label_values(oasis_registry_nodes,job)",
-        "hide": 0,
-        "includeAll": false,
-        "index": -1,
-        "label": "Job",
-        "multi": false,
-        "name": "job",
-        "options": [],
-        "query": "label_values(oasis_registry_nodes,job)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -2274,5 +2167,5 @@
   "variables": {
     "list": []
   },
-  "version": 55
+  "version": 6
 }

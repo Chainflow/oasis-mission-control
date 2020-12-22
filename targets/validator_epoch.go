@@ -42,6 +42,11 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
+	if &blk == nil {
+		log.Printf("Got empty block res : %v", blk)
+		return
+	}
+
 	bh := blk.Height
 
 	// Return epcoh of specific height
