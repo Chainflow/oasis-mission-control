@@ -43,7 +43,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -140,7 +140,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -251,7 +251,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -353,7 +353,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -455,7 +455,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -552,7 +552,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -649,7 +649,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -746,7 +746,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -843,7 +843,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "InfluxDBVcf",
+      "datasource": "InfluxDBVCF",
       "format": "none",
       "gauge": {
         "maxValue": 100,
