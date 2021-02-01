@@ -74,12 +74,18 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	var protoVals tmproto.ValidatorSet
-	if err = protoVals.Unmarshal(validator.Meta); err != nil {
-		log.Println("Error while unmarshelling the validator set data ", err)
+	var protoLb tmproto.LightBlock
+	if err = protoLb.Unmarshal(validator.Meta); err != nil {
+		log.Printf("Error while unmarshelling the lb proto data : %v", err)
 		return
 	}
-	vals, err := tmtypes.ValidatorSetFromProto(&protoVals)
+
+	// var protoVals tmproto.ValidatorSet
+	// if err = protoVals.Unmarshal(validator.Meta); err != nil {
+	// 	log.Println("Error while unmarshelling the validator set data ", err)
+	// 	return
+	// }
+	vals, err := tmtypes.ValidatorSetFromProto(protoLb.ValidatorSet)
 	if err != nil {
 		log.Println("Error while unmarshelling the validator set data ", err)
 		return
