@@ -28,7 +28,7 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	if co == nil {
 
 		// Stop code here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: %s" +
+		log.Printf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}
@@ -39,6 +39,11 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	blk, err := co.GetBlock(context.Background(), height)
 	if err != nil {
 		log.Printf("Error while getting block info : %v", err)
+		return
+	}
+
+	if &blk == nil {
+		log.Printf("Got empty block res : %v", blk)
 		return
 	}
 

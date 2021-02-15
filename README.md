@@ -8,15 +8,21 @@
 
 Together, we've [built a similar tool](https://chainflow.io/cosmos-validator-mission-control/) for the Cosmos community, under an Interchain Foundation Grant.
 
-## Current Status - 12 November 2020 - Code Released for Use
+## UPDATE - 18 December 2020 - Oasis Bug May Cause Crash
+
+Today we discovered a bug in the Oasis code that may cause a validator to crash under an edge case when running Mission Control. The Oasis team says this bug has been fixed in v20.12.3. v20.12.3 is currently running on testnet. The Oasis team expects to recommend a mainnet upgrade to v20.12.3 in January 2021.
+
+At this time, we recommend ONLY running Oasis Mission Control with v20.12.3.
+
+## Current Status - 16 November 2020 - Code Released for Use
 
 You can find -
 
-1 - Dashboard details and screenshots [here](https://github.com/Chainflow/oasis-mission-control/issues/3)
+1 - Dashboard details, screenshots and alerts list [here](https://github.com/Chainflow/oasis-mission-control/issues/3).
 
-2 - Code and installation instructions [here](./INSTRUCTIONS.md)
+2 - Code and installation instructions [here](./INSTRUCTIONS.md).
 
-Have feedback or questions? Open an issue in this repo, thanks!
+Have feedback or questions? Open an issue in [this repo](https://github.com/Chainflow/oasis-mission-control), thanks!
 
 ## Problem
 
@@ -39,40 +45,3 @@ This should free operator time and attention to put toward other value-added eco
 We're building this for the Oasis Community. While the Oasis validators may seem like the most obvious beneficiaries, the broader Oasis community will also benefit from a more secure network, more diverse set of validators and greater validator governance participation.
 
 There will be a number of checkpoints along the way to collect community feedback. We look forward to the community's feedback, to help align what's built to the specific needs of the Oasis community.
-
-## Timeline and Plan
-
-Assume 18 June start date.
-
-**1 - Set-up project structure - 1 week - Done**
-
-- Confirm timeline
-- Set-up repo
-- Set-up project board
-
-**2 - Develop Draft Specification - 2 weeks**
-
-- Develop monitoring and alerting tool draft requirements specification
-
-**3 - Develop Final Specification - 2 weeks**
-
-- Collect specification community feedback *<-- Call for community feedback*
-- Develop monitoring and alerting tool final requirements, incorporating community feedback
-
-**4 - Develop Dashboard Prototype - 6 weeks**
-
-- Develop and deploy dashboard prototype for review
-- Develop and deploy installation, configuration and operation documentation for review
-
-**5 - Collect Feedback on Dashboard Prototype - 1 week** *<-- Call for community feedback*
-
-- Collect and prioritize community feedback for incorporation in final dashboard
-
-**6 - Develop Final Dashboard - 4 weeks**
-
-- Develop and deploy dashboard final dashboard for review
-- Finalize installation, configuration and operation documentation
-
-**7 - One of the phases is writing a blog post on the Oasis Blog. This will be in the last phase - 1 Day**
-
-- Develop and publish blog post

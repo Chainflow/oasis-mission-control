@@ -86,7 +86,7 @@ func InitTargets(cfg *config.Config) *Targets {
 			ExecutionType: "http",
 			Name:          "Get network latest height",
 			HTTPOptions: HTTPOptions{
-				Endpoint: cfg.ValidatorDetails.NetworkURL + "/api/consensus/status?name=" + cfg.ValidatorDetails.NetworkNodeName,
+				Endpoint: cfg.ValidatorDetails.NetworkURL + "/api/consensus/block?name=" + cfg.ValidatorDetails.NetworkNodeName,
 				Method:   http.MethodGet,
 			},
 			Func:        GetNetworkLatestHeight,

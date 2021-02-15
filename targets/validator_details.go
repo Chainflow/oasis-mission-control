@@ -53,7 +53,7 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 	if co == nil {
 
 		// Stop here faild to establish connection and reply
-		log.Fatalf("Failed to establish connection using socket: %s" +
+		log.Printf("Failed to establish connection using socket: %s" +
 			socket)
 		return
 	}
@@ -74,21 +74,22 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 		return
 	}
 
-	var protoVals tmproto.ValidatorSet
-	if err = protoVals.Unmarshal(validator.Meta); err != nil {
-		log.Println("Error while unmarshelling the validator set data ", err)
+	var protoLb tmproto.LightBlock
+	if err = protoLb.Unmarshal(validator.Meta); err != nil {
+		log.Printf("Error while unmarshelling the lb proto data : %v", err)
 		return
 	}
-	vals, err := tmtypes.ValidatorSetFromProto(&protoVals)
+
+	vals, err := tmtypes.ValidatorSetFromProto(protoLb.ValidatorSet)
 	if err != nil {
-		log.Println("Error while unmarshelling the validator set data ", err)
+		log.Printf("Error while unmarshelling the validator set data :%v ", err)
 		return
 	}
 
 	for _, val := range vals.Validators {
 		if val.Address.String() == cfg.ValidatorDetails.ValidatorHexAddress {
 
-			log.Println("val desc..", cfg.ValidatorDetails.ValidatorHexAddress)
+			log.Printf("val hex address from val set : %s", cfg.ValidatorDetails.ValidatorHexAddress)
 
 			var vp string
 			log.Printf("VOTING POWER: %d", val.VotingPower)
@@ -101,11 +102,10 @@ func GetValidatorsList(ops HTTPOptions, cfg *config.Config, c client.Client) {
 				vp = "0"
 			}
 			_ = writeToInfluxDb(c, bp, "oasis_voting_power", map[string]string{}, map[string]interface{}{"power": vp})
-			log.Println("Voting Power \n", vp)
 
 			votingPower, err := strconv.Atoi(vp)
 			if err != nil {
-				log.Println("Error wile converting string to int of voting power \t", err)
+				log.Printf("Error wile converting string to int of voting power : %v", err)
 			}
 
 			if int64(votingPower) < cfg.AlertsThreshold.VotingPowerThreshold {
