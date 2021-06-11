@@ -5,10 +5,26 @@ import (
 	"log"
 
 	client "github.com/influxdata/influxdb1-client/v2"
+	beacon "github.com/oasisprotocol/oasis-core/go/beacon/api"
 	consensus "github.com/oasisprotocol/oasis-core/go/consensus/api"
+	"google.golang.org/grpc"
 
 	"github.com/Chainflow/oasis-mission-control/config"
+	"github.com/Chainflow/oasis-mission-control/rpc"
 )
+
+// loadBeaconClient loads beacon client and returns it
+func loadBeaconClient(socket string) (*grpc.ClientConn, beacon.Backend) {
+
+	// Attempt to load connection with staking client
+	connection, beaconClient, err := rpc.BeaconClient(socket)
+	if err != nil {
+		log.Println("Failed to establish connection to beacon client : ",
+			err)
+		return nil, nil
+	}
+	return connection, beaconClient
+}
 
 // GetValEpoch returns the work epoch number
 func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
@@ -49,8 +65,10 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 
 	bh := blk.Height
 
+	connection, bo := loadBeaconClient(socket)
+
 	// Return epcoh of specific height
-	epoch, err := co.GetEpoch(context.Background(), bh)
+	epoch, err := bo.GetEpoch(context.Background(), bh)
 	if err != nil {
 		log.Printf("Failed to retrieve Epoch of Block : %v", err)
 		return
