@@ -65,11 +65,6 @@ func GetValEpoch(ops HTTPOptions, cfg *config.Config, c client.Client) {
 
 	bh := blk.Height
 
-	var backend beacon.Backend
-	timeSource := (backend).(beacon.SetableBackend)
-	ep, err := timeSource.GetEpoch(context.Background(), height)
-	log.Fatalf("ep, err", ep, err)
-
 	connection, bo := loadBeaconClient(socket)
 
 	// Return epcoh of specific height
