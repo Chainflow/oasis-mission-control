@@ -126,7 +126,7 @@ func GetSelfDelegationBal(ops HTTPOptions, cfg *config.Config, c client.Client) 
 	// Create an owner query to be able to retrieve data with regards to account
 	query := staking.OwnerQuery{Height: blk.Height, Owner: address}
 
-	delegations, err := co.Delegations(context.Background(), &query)
+	delegations, err := co.DelegationsFor(context.Background(), &query)
 	if err != nil {
 
 		log.Printf("Failed to get Delegations : %v", err)

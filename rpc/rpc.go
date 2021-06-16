@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	beacon "github.com/oasisprotocol/oasis-core/go/beacon/api"
 	cmnGrpc "github.com/oasisprotocol/oasis-core/go/common/grpc"
 	consensus "github.com/oasisprotocol/oasis-core/go/consensus/api"
 	scheduler "github.com/oasisprotocol/oasis-core/go/scheduler/api"
@@ -60,6 +61,18 @@ func StakingClient(address string) (*grpc.ClientConn, staking.Backend, error) {
 	}
 
 	client := staking.NewStakingClient(conn)
+	return conn, client, nil
+}
+
+// StakingClient - initiate new staking client
+func BeaconClient(address string) (*grpc.ClientConn, beacon.Backend, error) {
+	conn, err := Connect(address)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to establish connection "+
+			"with node %s", address)
+	}
+
+	client := beacon.NewBeaconClient(conn)
 	return conn, client, nil
 }
 
